@@ -657,6 +657,8 @@ boolean c2t_hccs_preCoil() {
 	if (get_campground() contains $item[Asdon Martin keyfob]) {
 		buy(8,$item[wad of dough]);
 	}	
+					 
+					 
 	//Grab Anti Cheese for possible government
 	if (get_campground() contains $item[Source Terminal]) {
         cli_execute('place.php?whichplace=desertbeach&action=db_nukehouse');
@@ -1043,7 +1045,14 @@ boolean c2t_hccs_preItem() {
 		create(8,$item[loaf of soda bread]);
 		cli_execute( "asdonmartin fuel 8 loaf of soda bread" );
         	c2t_hccs_getEffect($effect[Driving Observantly]);
-    	}					   
+    	}		
+				   
+	//Pumpkin grab for item
+	if (get_campground() contains $item[packet of pumpkin seeds]) {
+		cli_execute( "garden pick" );
+		c2t_hccs_haveUse($item[pumpkin]);
+		c2t_hccs_haveUse($item[pumpkin juice]);	
+	}				   
 
 	//Sell Space Blanket if available may need more meat for loaves, etc.
 	if (available_amount($item[space blanket]) > 0)
