@@ -40,6 +40,21 @@ This is the clan that the script will join for Elf Buff
 */
 if (!property_exists("c2t_hccs_joinElfClan",false))
 	set_property("c2t_hccs_joinElfClan","0");
+/*	
+set c2t_hccs_AscendClass = 3
+*/
+if (!property_exists("c2t_hccs_AscendClass",false))
+	set_property("c2t_hccs_AscendClass","3");
+/*
+set c2t_hccs_WhatCore = 2
+*/
+if (!property_exists("c2t_hccs_WhatCore",false))
+	set_property("c2t_hccs_WhatCore","2");
+/*
+set c2t_hccs_ascgender = 1
+*/
+if (!property_exists("c2t_hccs_ascgender",false))
+	set_property("c2t_hccs_ascgender","1");
 /*
 set c2t_hccs_skipFinalService = false
 If this is set to true, the final service will be skipped leaving you in-run once finished
