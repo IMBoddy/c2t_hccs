@@ -859,6 +859,14 @@ boolean c2t_hccs_allTheBuffs() {
 	c2t_hccs_pillkeeper($effect[hulkien]); //stats
 	c2t_hccs_pillkeeper($effect[fidoxene]);//familiar
 	
+	//Tall Grass Garden
+	if (get_campground() contains $item[packet of tall grass seeds]) {
+		cli_execute( "garden pick" );
+		if (available_amount($item[Snarf berry]) > 0) {	
+			c2t_hccs_getEffect($effect[Berry Statistical]);
+		}
+	}	
+	
 	//beach comb leveling buffs
 	if (available_amount($item[beach comb]) > 0) {
 		c2t_hccs_getEffect($effect[you learned something maybe!]); //beach exp
@@ -1039,7 +1047,12 @@ boolean c2t_hccs_preItem() {
 	if (get_campground() contains $item[Source Terminal]) {
         c2t_hccs_getEffect($effect[items.enh]);
     	}	
-				   	   
+	
+	//Sell Space Blanket if available may need more meat for loaves, etc.
+	if (available_amount($item[space blanket]) > 0)
+		autosell(1,$item[space blanket]);			   
+	
+				   
 	//Asdon Martin Buff
 	if (get_campground() contains $item[Asdon Martin keyfob]) {
 		create(8,$item[loaf of soda bread]);
@@ -1052,11 +1065,9 @@ boolean c2t_hccs_preItem() {
 		cli_execute( "garden pick" );
 		c2t_hccs_haveUse($item[pumpkin]);
 		c2t_hccs_haveUse($item[pumpkin juice]);	
-	}				   
-
-	//Sell Space Blanket if available may need more meat for loaves, etc.
-	if (available_amount($item[space blanket]) > 0)
-		autosell(1,$item[space blanket]);			   
+	}				   			   
+				   
+				   
 				   
 	//MayDay Glowstick Effect
 	if (available_amount($item[emergency glowstick]) > 0)
@@ -1303,7 +1314,11 @@ boolean c2t_hccs_preFamiliar() {
 	c2t_hccs_getEffect($effect[blood bond]);
 	c2t_hccs_getEffect($effect[leash of linguini]);
 	c2t_hccs_getEffect($effect[empathy]);
-	c2t_hccs_getEffect($effect[Robot Friends]);
+	
+	// Silver Face Paint pulled
+	if (available_amount($item[silver face paint]) > 0)
+		c2t_hccs_getEffect($effect[Robot Friends]);
+	
 
 	//AT-only buff
 	if (my_class() == $class[accordion thief])
