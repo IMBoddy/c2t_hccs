@@ -511,11 +511,11 @@ boolean c2t_hccs_preCoil() {
 	if (available_amount($item[unwrapped knock-off retro superhero cape]) > 0)
 		cli_execute('retrocape '+my_primestat());
 
-	//ebony epee from lathe
-	if (available_amount($item[ebony epee]) == 0) {
+	//weeping willow wand from lathe
+	if (available_amount($item[weeping willow wand]) == 0) {
 		if (item_amount($item[spinmaster&trade; lathe]) > 0) {
 			visit_url('shop.php?whichshop=lathe');
-			retrieve_item(1,$item[ebony epee]);
+			retrieve_item(1,$item[weeping willow wand]);
 		}
 	}
 	
@@ -1057,9 +1057,7 @@ boolean c2t_hccs_preItem() {
 	if (have_effect($effect[synthesis: collection]) == 0)//skip pizza if synth item
 		c2t_hccs_pizzaCube($effect[certainty]);
 
-	// might move back to level up part
-	if (!c2t_hccs_pizzaCube($effect[infernal thirst]))
-		c2t_hccs_genie($effect[infernal thirst]);
+	
 
 	//spice ghost
 	if (have_skill($skill[bind spice ghost])) {
@@ -1092,7 +1090,13 @@ boolean c2t_hccs_preItem() {
 		return true;
 
 	//THINGS I DON'T ALWAYS WANT TO USE FOR ITEM TEST
-
+				   
+	//Wishing Thirst may not be required with extra item buffs
+	if (!c2t_hccs_pizzaCube($effect[infernal thirst]))
+		c2t_hccs_genie($effect[infernal thirst]);			  
+	if (c2t_hccs_thresholdMet(TEST_ITEM))
+		return true;
+				   
 	//if familiar test is ever less than 19 turns, feel lost will need to be completely removed or the test order changed
 	c2t_hccs_getEffect($effect[feeling lost]);
 	if (c2t_hccs_thresholdMet(TEST_ITEM))
@@ -1418,7 +1422,36 @@ boolean c2t_hccs_preWeapon() {
 	c2t_hccs_getEffect($effect[frenzied, bloody]);
 	c2t_hccs_getEffect($effect[scowl of the auk]);
 	c2t_hccs_getEffect($effect[tenacity of the snapper]);
-	c2t_hccs_getEffect($effect[The Power of LOV]);
+	
+	//LOV Potion Buff
+	if (available_amount($item[LOV Elixir #3]) > 0)
+		c2t_hccs_getEffect($effect[The Power of LOV]);
+	
+	
+	//Elf Buff for weapon damage
+	if ((have_familiar($familiar[Machine Elf])) && ((have_effect($effect[inner elf]))) == 0) {
+		string clan = get_property("c2t_hccs_joinElfClan");
+		if (clan.to_int() != 0)
+			c2t_assert(c2t_joinClan(clan.to_int()),`Could not join clan {clan}`);
+		else
+			c2t_assert(c2t_joinClan(clan),`Could not join clan {clan}`);
+
+
+	
+		use_familiar($familiar[Machine Elf]);
+		c2t_hccs_getEffect($effect[Blood Bubble]);
+		
+		
+		set_property("choiceAdventure326", 1);
+		adv1($location[The Slime Tube]); -1;
+		run_combat();
+	}
+	// Seperated to get back into original clan
+	string clan = get_property("c2t_hccs_joinClan");
+		if (clan.to_int() != 0)
+			c2t_assert(c2t_joinClan(clan.to_int()),`Could not join clan {clan}`);
+		else
+			c2t_assert(c2t_joinClan(clan),`Could not join clan {clan}`);
 	
 	//don't have these skills yet. maybe should add check for all skill uses to make universal?
 	if (have_skill($skill[song of the north]))
@@ -1546,7 +1579,7 @@ boolean c2t_hccs_preSpell() {
 	c2t_hccs_getEffect($effect[D-Charged]);		
 		
 	//Elf Buff
-	if (have_familiar($familiar[Machine Elf])) {
+	if ((have_familiar($familiar[Machine Elf])) && ((have_effect($effect[inner elf]))) == 0) {
 		string clan = get_property("c2t_hccs_joinElfClan");
 		if (clan.to_int() != 0)
 			c2t_assert(c2t_joinClan(clan.to_int()),`Could not join clan {clan}`);
