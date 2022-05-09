@@ -2,6 +2,7 @@
 
 This is a fork from c2t_hccs. Ive added a couple IotM I had that werent suported and added minimal support. 
 * [Grumpy Bumpkin's Pumpkin Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Grumpy_Bumpkin%27s_Pumpkin_Seed_Catalog)
+* [Pokéfam Guide to Capturing All of Them](https://kol.coldfront.net/thekolwiki/index.php/Pok%C3%A9fam_Guide_to_Capturing_All_of_Them)
 * [Machine Elf](https://kol.coldfront.net/thekolwiki/index.php/Machine_Elf)
 * [Tunnel of LOV](https://kol.coldfront.net/thekolwiki/index.php/The_Tunnel_of_L.O.V.E.)
 * [Asdon Martin](https://kol.coldfront.net/thekolwiki/index.php/Asdon_Martin)
@@ -78,6 +79,7 @@ While these are not strictly required, not having enough that either save turns 
 * [Pocket Meteor Guide](https://kol.coldfront.net/thekolwiki/index.php/Pocket_Meteor_Guide) &mdash; with saber saves 4 turns on familiar text, 8 on weapon test, 4 on spell test
 * [pantogram](https://kol.coldfront.net/thekolwiki/index.php/Pantogram) &mdash; saves 2 turns on hot test, 3 on combat test, 0.4 on spell test
 * [locked mumming trunk](https://kol.coldfront.net/thekolwiki/index.php/Locked_mumming_trunk) &mdash; 2-4 stats from combat
+* [Pokéfam Guide to Capturing All of Them](https://kol.coldfront.net/thekolwiki/index.php/Pok%C3%A9fam_Guide_to_Capturing_All_of_Them) &mdash; saves 1.7 on item test if luck incense is pulled, buff for leveling if Snarf Berry is pulled.  
 * [FantasyRealm membership packet](https://kol.coldfront.net/thekolwiki/index.php/FantasyRealm_membership_packet) &mdash; get a hat with +15 mainstat
 * [God Lobster Egg](https://kol.coldfront.net/thekolwiki/index.php/God_Lobster_Egg) &mdash; 3 mid-tier scaling fights & nostalgia pi&ntilde;ata
 * [Songboom&trade; BoomBox Box](https://kol.coldfront.net/thekolwiki/index.php/SongBoom%E2%84%A2_BoomBox_Box) &mdash; extra meat from fights
