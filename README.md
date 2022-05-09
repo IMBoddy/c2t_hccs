@@ -103,7 +103,7 @@ While these are not strictly required, not having enough that either save turns 
 * [Undamaged Unbreakable Umbrella](https://kol.coldfront.net/thekolwiki/index.php/Undamaged_Unbreakable_Umbrella) &mdash; saves up to 1.7 turns on item test, 6 on combat test, 1 on weapon test, 0.5 on spell test
 * [Machine Elf](https://kol.coldfront.net/thekolwiki/index.php/Machine_Elf) &mdash; Doesn't use fights yet, gets inner elf from personal clan, youll need to change this to one of yours, saves up to 2 turns on spell test.
 * [Tunnel of LOV](https://kol.coldfront.net/thekolwiki/index.php/The_Tunnel_of_L.O.V.E.) &mdash; get's Elixir #3 + #6, Fam Weight Buff, LOV Earrings, LOV Chocolate, saves up to 2 turn on weapon test, 2 on spell test, 2 on Familiar test.
-* [Asdon Martin](https://kol.coldfront.net/thekolwiki/index.php/Asdon_Martin) &mdash; saves up to 6.66 turns on items test. Unsure if conflicts with moon sign change as it uses loafs of soda bread. CAUTION
+* [Asdon Martin](https://kol.coldfront.net/thekolwiki/index.php/Asdon_Martin) &mdash; saves up to 6.66 turns on items test, 6 on non-combat, 1 on heat resistance.
 * [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_terminal) &mdash; saves up to 2 turns on item test.
 * [MayDay™ supply package](https://kol.coldfront.net/thekolwiki/index.php/MayDay%E2%84%A2_supply_package) RtS Effect minor level help + hot res, if acquired - support for emergency glowstick (1.7 turns on item test) + space blanket (Autosell in-case) + gaffer's tape (Buff Moxie class)
 
