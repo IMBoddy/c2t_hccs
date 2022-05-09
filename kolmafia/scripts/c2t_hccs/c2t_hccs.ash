@@ -1043,10 +1043,7 @@ boolean c2t_hccs_preItem() {
 	c2t_hccs_getEffect($effect[singer's faithful ocelot]);
 	c2t_hccs_getEffect($effect[the spirit of taking]);
 				   
-	//Source Terminal Buff
-	if (get_campground() contains $item[Source Terminal]) {
-        c2t_hccs_getEffect($effect[items.enh]);
-    	}	
+	
 	
 	//Sell Space Blanket if available may need more meat for loaves, etc.
 	if (available_amount($item[space blanket]) > 0)
@@ -1110,12 +1107,21 @@ boolean c2t_hccs_preItem() {
 		return true;
 
 	//THINGS I DON'T ALWAYS WANT TO USE FOR ITEM TEST
+	
+	//Source Terminal Buff
+	if (get_campground() contains $item[Source Terminal]) {
+        	c2t_hccs_getEffect($effect[items.enh]);
+		if (c2t_hccs_thresholdMet(TEST_ITEM))
+		return true;
+    	}				   
 				   
 	//Wishing Thirst may not be required with extra item buffs
 	if (!c2t_hccs_pizzaCube($effect[infernal thirst]))
 		c2t_hccs_genie($effect[infernal thirst]);			  
 	if (c2t_hccs_thresholdMet(TEST_ITEM))
 		return true;
+				   
+				   
 				   
 	//if familiar test is ever less than 19 turns, feel lost will need to be completely removed or the test order changed
 	c2t_hccs_getEffect($effect[feeling lost]);
