@@ -15,7 +15,7 @@ This is a continual work-in-progress. It is not likely to run out-of-the-box for
 
 To install, run the following on the gCLI:
 
-`svn checkout https://github.com/c2talon/c2t_hccs/branches/master/kolmafia/`
+`svn checkout https://github.com/IMBoddy/c2t_hccs/branches/master/kolmafia/`
 
 To uninstall, run the following on the gCLI:
 
