@@ -37,15 +37,10 @@ To uninstall, run the following on the gCLI:
     - The moods I use can be seen in [mood examples.txt](https://github.com/c2talon/c2t_hccs/blob/master/mood%20examples.txt) to use as a starting point.
 
 ## ## User settings and disabling resources
-Most settings can be changed via a relay script. To start the relay script, find the drop-down menu at the top-right corner of the menu pane and select `c2t hccs`, as seen here:
+Most settings can be changed via a relay script. To start the relay script, find the drop-down menu that says `-run script-` at the top-right corner of the menu pane and select `c2t hccs`, as seen here:
 ![relay script location](https://github.com/C2Talon/c2t_hccs/blob/master/relay_script_location.png "relay script location")
 
-
-### Disabling resources
-
-Some resources can be disabled via a property. It's an all-or-nothing thing, which is somewhat detailed in [c2t_hccs_properties.ash](https://github.com/C2Talon/c2t_hccs/blob/master/kolmafia/scripts/c2t_hccs/c2t_hccs_properties.ash#L65)
-
-Some resources can be disabled with the same relay script.
+Resources can be disabled with the same relay script.
 
 ## IotM
 
