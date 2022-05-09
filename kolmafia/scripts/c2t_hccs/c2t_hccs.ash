@@ -653,7 +653,7 @@ boolean c2t_hccs_preCoil() {
 	// beach access
 	c2t_assert(retrieve_item(1,$item[bitchin' meatcar]),"Couldn't get a bitchin' meatcar");
 					 
-	//Asdon Grab for loaves
+	//Asdon Grab for loaves (Pre)
 	if (get_campground() contains $item[Asdon Martin keyfob]) {
 		buy(8,$item[wad of dough]);
 	}	
@@ -1202,6 +1202,19 @@ boolean c2t_hccs_preHotRes() {
 			return true;
 	}
 
+	//Asdon Martin Buff for Heat
+	if (get_campground() contains $item[Asdon Martin keyfob]) {
+		if (available_amount($item[wad of dough]) < 8) {
+			buy(1,$item[all-purpose flower]);
+			use(1,$item[all-purpose flower]);
+		}
+		create(8,$item[loaf of soda bread]);
+		cli_execute( "asdonmartin fuel 8 loaf of soda bread" );
+        	c2t_hccs_getEffect($effect[Driving Safely]);
+		if (c2t_hccs_thresholdMet(TEST_HOT_RES))
+			return true;
+    	}	
+	
 	//synthesis: hot
 	if (c2t_hccs_sweetSynthesis($effect[synthesis: hot]) && c2t_hccs_thresholdMet(TEST_HOT_RES))
 		return true;
@@ -1379,6 +1392,19 @@ boolean c2t_hccs_preNoncombat() {
 			return true;
 	}
 
+	//Asdon Martin Buff for NC
+	if (get_campground() contains $item[Asdon Martin keyfob]) {
+		if (available_amount($item[wad of dough]) < 8) {
+			buy(1,$item[all-purpose flower]);
+			use(1,$item[all-purpose flower]);
+		}
+		create(8,$item[loaf of soda bread]);
+		cli_execute( "asdonmartin fuel 8 loaf of soda bread" );
+        	c2t_hccs_getEffect($effect[Driving Stealthily]);
+		if (c2t_hccs_thresholdMet(TEST_NONCOMBAT))
+			return true;
+    	}			    
+			    
 	//disquiet riot wish potential if 2 or more wishes remain and not close to min turn
 	if (c2t_hccs_testTurns(TEST_NONCOMBAT) >= 9)//TODO better cost/benefit
 		c2t_hccs_genie($effect[disquiet riot]);
