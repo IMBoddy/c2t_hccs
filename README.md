@@ -68,8 +68,13 @@ Some of the required IotM are only required for now because they're explicitly u
 
 While these are not strictly required, not having enough that either save turns or significantly help with leveling may cause problems. The blurb after the em dash (&mdash;) is basically what the script uses the IotM for.
 
+* [Grumpy Bumpkin's Pumpkin Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Grumpy_Bumpkin%27s_Pumpkin_Seed_Catalog) &mdash; saves 1.3 turns on item test.
 * [Mint Salton Pepper's Peppermint Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Mint_Salton_Pepper%27s_Peppermint_Seed_Catalog) &mdash; used to get the synthesize item buff to save 10 turns on the item test; provides backup candies for other synthesis buffs
+* [Machine Elf](https://kol.coldfront.net/thekolwiki/index.php/Machine_Elf) &mdash; Doesn't use fights yet, gets inner elf from personal clan, youll need to change this to one of yours in properties, saves up to 2 turns on spell test.
+* [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_terminal) &mdash; saves up to 2 turns on item test.
+* [Tunnel of LOV](https://kol.coldfront.net/thekolwiki/index.php/The_Tunnel_of_L.O.V.E.) &mdash; get's Elixir #3 + #6, Fam Weight Buff, LOV Earrings, LOV Chocolate, saves up to 2 turn on weapon test, 2 on spell test, 2 on Familiar test.
 * [Suspicious Package](https://kol.coldfront.net/thekolwiki/index.php/Suspicious_package) &mdash; saves 5 on hot test, 3 on combat test, 1 on weapon test, 1 on spell test; backup banishes
+* [Asdon Martin](https://kol.coldfront.net/thekolwiki/index.php/Asdon_Martin) &mdash; saves up to 6.66 turns on items test, 6 on non-combat, 1 on heat resistance.
 * [Pocket Meteor Guide](https://kol.coldfront.net/thekolwiki/index.php/Pocket_Meteor_Guide) &mdash; with saber saves 4 turns on familiar text, 8 on weapon test, 4 on spell test
 * [pantogram](https://kol.coldfront.net/thekolwiki/index.php/Pantogram) &mdash; saves 2 turns on hot test, 3 on combat test, 0.4 on spell test
 * [locked mumming trunk](https://kol.coldfront.net/thekolwiki/index.php/Locked_mumming_trunk) &mdash; 2-4 stats from combat
@@ -102,12 +107,8 @@ While these are not strictly required, not having enough that either save turns 
 * [undrilled cosmic bowling ball](https://kol.coldfront.net/thekolwiki/index.php/Undrilled_cosmic_bowling_ball) &mdash; 50% stat gain in NEP; saves 1.67 adventures on item test; some extra item and meat gain during leveling fights
 * [combat lover's locket lockbox](https://kol.coldfront.net/thekolwiki/index.php/Combat_lover%27s_locket_lockbox) &mdash; up to 3 monsters to fight to save wishes and time spent on fax
 * [Undamaged Unbreakable Umbrella](https://kol.coldfront.net/thekolwiki/index.php/Undamaged_Unbreakable_Umbrella) &mdash; saves up to 1.7 turns on item test, 6 on combat test, 1 on weapon test, 0.5 on spell test
-* [Machine Elf](https://kol.coldfront.net/thekolwiki/index.php/Machine_Elf) &mdash; Doesn't use fights yet, gets inner elf from personal clan, youll need to change this to one of yours, saves up to 2 turns on spell test.
-* [Tunnel of LOV](https://kol.coldfront.net/thekolwiki/index.php/The_Tunnel_of_L.O.V.E.) &mdash; get's Elixir #3 + #6, Fam Weight Buff, LOV Earrings, LOV Chocolate, saves up to 2 turn on weapon test, 2 on spell test, 2 on Familiar test.
-* [Asdon Martin](https://kol.coldfront.net/thekolwiki/index.php/Asdon_Martin) &mdash; saves up to 6.66 turns on items test, 6 on non-combat, 1 on heat resistance.
-* [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_terminal) &mdash; saves up to 2 turns on item test.
 * [MayDay™ supply package](https://kol.coldfront.net/thekolwiki/index.php/MayDay%E2%84%A2_supply_package) &mdash; RtS Effect minor level help + hot res, if acquired - support for emergency glowstick (1.7 turns on item test) + space blanket (Autosell in-case) + gaffer's tape (Buff Moxie class)
-* [Grumpy Bumpkin's Pumpkin Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Grumpy_Bumpkin%27s_Pumpkin_Seed_Catalog) &mdash; saves 1.3 turns on item test.
+
 
 ## Bugs?
 Report bugs here: https://github.com/C2Talon/c2t_hccs/issues
