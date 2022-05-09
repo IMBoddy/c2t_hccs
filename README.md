@@ -1,6 +1,7 @@
 # c2t_hccs
 
 This is a fork from c2t_hccs. Ive added a couple IotM I had that werent suported and added minimal support. 
+* [Grumpy Bumpkin's Pumpkin Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Grumpy_Bumpkin%27s_Pumpkin_Seed_Catalog)
 * [Machine Elf](https://kol.coldfront.net/thekolwiki/index.php/Machine_Elf)
 * [Tunnel of LOV](https://kol.coldfront.net/thekolwiki/index.php/The_Tunnel_of_L.O.V.E.)
 * [Asdon Martin](https://kol.coldfront.net/thekolwiki/index.php/Asdon_Martin)
@@ -105,7 +106,8 @@ While these are not strictly required, not having enough that either save turns 
 * [Tunnel of LOV](https://kol.coldfront.net/thekolwiki/index.php/The_Tunnel_of_L.O.V.E.) &mdash; get's Elixir #3 + #6, Fam Weight Buff, LOV Earrings, LOV Chocolate, saves up to 2 turn on weapon test, 2 on spell test, 2 on Familiar test.
 * [Asdon Martin](https://kol.coldfront.net/thekolwiki/index.php/Asdon_Martin) &mdash; saves up to 6.66 turns on items test, 6 on non-combat, 1 on heat resistance.
 * [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_terminal) &mdash; saves up to 2 turns on item test.
-* [MayDay™ supply package](https://kol.coldfront.net/thekolwiki/index.php/MayDay%E2%84%A2_supply_package) RtS Effect minor level help + hot res, if acquired - support for emergency glowstick (1.7 turns on item test) + space blanket (Autosell in-case) + gaffer's tape (Buff Moxie class)
+* [MayDay™ supply package](https://kol.coldfront.net/thekolwiki/index.php/MayDay%E2%84%A2_supply_package) &mdash; RtS Effect minor level help + hot res, if acquired - support for emergency glowstick (1.7 turns on item test) + space blanket (Autosell in-case) + gaffer's tape (Buff Moxie class)
+* [Grumpy Bumpkin's Pumpkin Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Grumpy_Bumpkin%27s_Pumpkin_Seed_Catalog) &mdash; saves 1.3 turns on item test.
 
 ## Bugs?
 Report bugs here: https://github.com/C2Talon/c2t_hccs/issues
