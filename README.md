@@ -37,47 +37,14 @@ To uninstall, run the following on the gCLI:
     - The moods I use can be seen in [mood examples.txt](https://github.com/c2talon/c2t_hccs/blob/master/mood%20examples.txt) to use as a starting point.
 
 ## ## User settings and disabling resources
+Most settings can be changed via a relay script. To start the relay script, find the drop-down menu at the top-right corner of the menu pane and select `c2t hccs`, as seen here:
+![relay script location](https://github.com/C2Talon/c2t_hccs/blob/master/relay_script_location.png "relay script location")
 
-These are set via the gCLI. Basically so people don't have to edit the script itself to change some simple, but critical, things.
-
-`set c2t_hccs_haltBeforeTest = false`
-* Setting this to `true` will cause the script to always halt after prepping for a test, but before doing the test.
-* Defaults to `false`
-
-`set c2t_hccs_printModtrace = false`
-* Setting this to `true` will cause the script to print the modtrace for the corresponding mods that the test uses before doing the test.
-* Defaults to `false`
-
-`set c2t_hccs_joinClan = 90485`
-* This is the clan that the script will join for the VIP lounge and fortune teller
-* Takes an `int` or `string`, where `int` would be clanid (preferred), and `string` would be the clan name
-* Defaults to `90485` (Bonus Adventures From Hell)
-
- `set c2t_hccs_joinElfClan = 0`
-* This is the clan that the script will join for the Elf Buff
-* Defaults to `0` You will need to set this. 
-
-`set c2t_hccs_clanFortunes = CheeseFax`
-* This is the name of the person/bot that you want to do the fortune teller with
-* Defaults to `CheeseFax`
-
-`set c2t_hccs_skipFinalService = false`
-* If this is set to `true`, the final service will be skipped leaving you in-run once finished
-* Defaults to `false`
-
-`set c2t_hccs_thresholds = 1,1,1,1,1,1,1,1,1,1`
-* These are the 10 thresholds corresponding to the minimum turns to allow each test to take
-* The script will stop just before doing a test if a threshold is not met after doing all the pre-test stuff
-* The order is hp,mus,mys,mox,fam,weapon,spell,nc,item,hot
-* Example: `1,1,1,1,35,1,31,1,1,1` will allow the familiar test to take 35 turns, the spell test to take 31 turns, and all others must be 1 turn
-* Defaults to `1,1,1,1,1,1,1,1,1,1`
 
 ### Disabling resources
 
 Some resources can be disabled via a property. It's an all-or-nothing thing, which is somewhat detailed in [c2t_hccs_properties.ash](https://github.com/C2Talon/c2t_hccs/blob/master/kolmafia/scripts/c2t_hccs/c2t_hccs_properties.ash#L65)
 
-Most settings can be changed via a relay script. To start the relay script, find the drop-down menu at the top-right corner of the menu pane and select `c2t hccs`, as seen here:
-![relay script location](https://github.com/C2Talon/c2t_hccs/blob/master/relay_script_location.png "relay script location")
 Some resources can be disabled with the same relay script.
 
 ## IotM
