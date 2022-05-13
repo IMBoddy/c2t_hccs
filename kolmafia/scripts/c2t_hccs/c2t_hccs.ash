@@ -1491,11 +1491,7 @@ boolean c2t_hccs_preWeapon() {
 	
 	//Elf Buff for weapon damage
 	if ((have_familiar($familiar[Machine Elf])) && ((have_effect($effect[inner elf])) && (get_property_int('_snokebombUsed') < 3) == 0) {
-		string clan = get_property("c2t_hccs_joinElfClan");
-		if (clan.to_int() != 0)
-			c2t_assert(c2t_joinClan(clan.to_int()),`Could not join clan {clan}`);
-		else
-			c2t_assert(c2t_joinClan(clan),`Could not join clan {clan}`);
+		c2t_hccs_joinClan(get_property("c2t_hccs_joinElfClan"));
 
 
 	
