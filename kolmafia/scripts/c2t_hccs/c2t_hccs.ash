@@ -1,7 +1,7 @@
 //c2t hccs
 //c2t
 
-since r26334;//umbrella support
+since r26383;//mayday support
 
 import <c2t_hccs_lib.ash>
 import <c2t_hccs_resources.ash>
@@ -724,9 +724,7 @@ boolean c2t_hccs_buffExp() {
 	if (!get_property('_aprilShower').to_boolean())
 		cli_execute('shower '+my_primestat());
 				
-	//Crack Open MayDay Crate, effect should make it through fights and hot res
-	if (available_amount($item[MayDay&trade; supply package]) > 0)
-		c2t_hccs_haveUse($item[MayDay&trade; supply package]);		
+		
 	
 	//TODO make synthesize selections smarter so the item one doesn't have to be so early
 	//synthesize item //put this before all other syntheses so the others don't use too many sprouts
@@ -836,6 +834,11 @@ boolean c2t_hccs_allTheBuffs() {
 	c2t_hccs_getEffect($effect[feeling excited]);
 
 	c2t_hccs_getEffect($effect[the magical mojomuscular melody]);
+	
+	//mayday contract
+	c2t_hccs_haveUse($item[mayday&trade; supply package]);
+	//TODO reevaluate cost/benefit later
+	c2t_hccs_haveUse($item[emergency glowstick]);
 	
 	//boxing daycare stat gain
 	if (get_property("daycareOpen").to_boolean() && get_property('_daycareGymScavenges').to_int() == 0) {
