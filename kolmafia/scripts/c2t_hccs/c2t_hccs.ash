@@ -1050,10 +1050,7 @@ boolean c2t_hccs_preItem() {
 	c2t_hccs_getEffect($effect[the spirit of taking]);
 				   
 	
-	
-	//Sell Space Blanket if available may need more meat for loaves, etc.
-	if (available_amount($item[space blanket]) > 0)
-		autosell(1,$item[space blanket]);			   
+			   
 	
 				   
 	//Asdon Martin Buff
