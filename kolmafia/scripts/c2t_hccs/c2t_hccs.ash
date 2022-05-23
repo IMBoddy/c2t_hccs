@@ -454,6 +454,9 @@ boolean c2t_hccs_preCoil() {
 
 	//vote
 	c2t_hccs_vote();
+	
+	//Bird-a-day Calendar
+	if (get_property('_canSeekBirds').to_boolean()) use(1, $item[Bird-a-Day calendar]);
 
 	//probably should make a property handler, because this looks like it may get unwieldly
 	if (get_property('_clanFortuneConsultUses').to_int() < 3) {
