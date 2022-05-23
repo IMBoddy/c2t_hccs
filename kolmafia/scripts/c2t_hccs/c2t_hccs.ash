@@ -1534,6 +1534,9 @@ boolean c2t_hccs_preWeapon() {
 
 	// Pool buff. Should have fallen through from noncom
 	c2t_hccs_getEffect($effect[billiards belligerence]);
+				    
+	// Fav Bird has Weapon Damage
+	c2t_hccs_getEffect($effect[Blessing of your favorite Bird]);			   
 
 	//meteor shower
 	if ((have_skill($skill[meteor lore]) && have_effect($effect[meteor showered]) == 0)
@@ -1610,8 +1613,7 @@ boolean c2t_hccs_preWeapon() {
 		&& c2t_hccs_testTurns(TEST_WEAPON) > 4 //4 is how much cargo would save on spell test, so may as well use here if spell is not better
 		&& have_effect($effect[rictus of yeg]) == 0
 		&& !get_property('_cargoPocketEmptied').to_boolean())
-			cli_execute("cargo item yeg's motel toothbrush");
-	c2t_hccs_haveUse($item[yeg's motel toothbrush]);
+			cli_execute("cargo 617");
 
 	return c2t_hccs_thresholdMet(TEST_WEAPON);
 }
@@ -1696,8 +1698,8 @@ boolean c2t_hccs_preSpell() {
 
 	// cargo pocket
 	if (available_amount($item[cargo cultist shorts]) > 0 && have_effect($effect[sigils of yeg]) == 0 && !get_property('_cargoPocketEmptied').to_boolean())
-		cli_execute("cargo item Yeg's Motel hand soap");
-	c2t_hccs_haveUse($item[yeg's motel hand soap]);
+		cli_execute("cargo 617");
+	
 
 	// meteor lore // moxie can't do this, as it wastes a saber on evil olive -- moxie should be able to do this now with nostalgia earlier?
 	if (have_skill($skill[meteor lore]) && have_effect($effect[meteor showered]) == 0 && get_property('_saberForceUses').to_int() < 5) {
