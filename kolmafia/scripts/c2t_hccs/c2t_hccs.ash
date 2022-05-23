@@ -1611,7 +1611,6 @@ boolean c2t_hccs_preWeapon() {
 	//cargo shorts as backup
 	if (available_amount($item[cargo cultist shorts]) > 0
 		&& c2t_hccs_testTurns(TEST_WEAPON) > 4 //4 is how much cargo would save on spell test, so may as well use here if spell is not better
-		&& have_effect($effect[rictus of yeg]) == 0
 		&& !get_property('_cargoPocketEmptied').to_boolean())
 			cli_execute("cargo 617");
 
@@ -1697,7 +1696,7 @@ boolean c2t_hccs_preSpell() {
 		ensure_song($effect[elron's explosive etude]);
 
 	// cargo pocket
-	if (available_amount($item[cargo cultist shorts]) > 0 && have_effect($effect[sigils of yeg]) == 0 && !get_property('_cargoPocketEmptied').to_boolean())
+	if (available_amount($item[cargo cultist shorts]) > 0 && !get_property('_cargoPocketEmptied').to_boolean())
 		cli_execute("cargo 617");
 	
 
