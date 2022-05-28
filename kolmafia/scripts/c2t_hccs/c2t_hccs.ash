@@ -793,7 +793,14 @@ boolean c2t_hccs_levelup() {
 		c2t_hccs_getEffect($effect[ode to booze]);
 		drink(1,itew);
 	}
-	//TODO summon crimbo booze or something else if needed
+	//TODO alt easy food/booze to get over 0 adv
+	else if (my_adventures() == 0) {
+		c2t_hccs_haveUse($skill[eye and a twist]);
+		if (item_amount($item[eye and a twist]) > 0) {
+			c2t_hccs_getEffect($effect[ode to booze]);
+			drink(1,$item[eye and a twist]);
+		}
+	}
 	c2t_assert(my_adventures() > 0,"not going to get far with zero adventures");
 
 	if (my_level() < 7 && c2t_hccs_buffExp()) {
