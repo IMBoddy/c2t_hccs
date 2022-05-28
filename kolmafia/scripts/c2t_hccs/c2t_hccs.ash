@@ -1661,7 +1661,9 @@ boolean c2t_hccs_preSpell() {
 	// Seperated to get back into original clan
 	c2t_hccs_joinClan(get_property("c2t_hccs_joinClan"));
 	
-	
+	//Yeg Soap
+	if (available_amount($item[Yeg's Motel hand soap]) > 0)
+		c2t_hccs_getEffect($effect[Sigils of Yeg]);
 
 	// Pool buff
 	c2t_hccs_getEffect($effect[mental a-cue-ity]);
