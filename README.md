@@ -1,6 +1,7 @@
 # c2t_hccs
 
 This is a fork from c2t_hccs. Ive added a couple IotM I had that werent suported and added minimal support. 
+* [Bird-a-Day calendar](https://kol.coldfront.net/thekolwiki/index.php/Bird-a-Day_calendar)
 * [Grumpy Bumpkin's Pumpkin Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Grumpy_Bumpkin%27s_Pumpkin_Seed_Catalog)
 * [Pokéfam Guide to Capturing All of Them](https://kol.coldfront.net/thekolwiki/index.php/Pok%C3%A9fam_Guide_to_Capturing_All_of_Them)
 * [Machine Elf](https://kol.coldfront.net/thekolwiki/index.php/Machine_Elf)
@@ -90,6 +91,7 @@ While these are not strictly required, not having enough that either save turns 
 * [vampyric cloake pattern](https://kol.coldfront.net/thekolwiki/index.php/Vampyric_cloake_pattern) &mdash; saves 3.3 turns on item test, 2 on hot test; 50% mus buff
 * [Beach Comb Box](https://kol.coldfront.net/thekolwiki/index.php/Beach_Comb_Box) &mdash; saves 1 turn on familiar and weapon tests, 3 on hot test, 0.5 on spell test; some minor levelling buffs
 * [Unopened Eight Days a Week Pill Keeper](https://kol.coldfront.net/thekolwiki/index.php/Unopened_Eight_Days_a_Week_Pill_Keeper) &mdash; buff sets familiars to level 20; 100% stat buff for levelling; can save 3 turns on hot test
+* [Bird-a-Day calendar](https://kol.coldfront.net/thekolwiki/index.php/Bird-a-Day_calendar) &mdash; Saves if fav'd item buff/ weapon buff
 * [unopened diabolic pizza cube box](https://kol.coldfront.net/thekolwiki/index.php/Unopened_diabolic_pizza_cube_box) &mdash; provides several buffs that help leveling and contribute greatly to tests; I don't suggest running without this unless you basically have everything on both lists
 * [mint-in-box Powerful Glove](https://kol.coldfront.net/thekolwiki/index.php/Mint-in-box_Powerful_Glove) &mdash; 200% stat buff for leveling & saves 6 turns on combat test, 1 on weapon test, 1 on spell test
 * [Better Shrooms and Gardens catalog](https://kol.coldfront.net/thekolwiki/index.php/Better_Shrooms_and_Gardens_catalog) &mdash; 1 mid-tier scaling fight
