@@ -737,6 +737,11 @@ boolean c2t_hccs_buffExp() {
 	if (!get_property('_aprilShower').to_boolean())
 		cli_execute('shower '+my_primestat());
 				
+	//Horsery
+	if (get_property("horseryAvailable").to_boolean()) {
+		visit_url('place.php?whichplace=town_right&action=town_horsery');
+		run_choice(3);//1266,3
+		}
 		
 	
 	//TODO make synthesize selections smarter so the item one doesn't have to be so early
@@ -1239,6 +1244,15 @@ boolean c2t_hccs_preHotRes() {
 			return true;
 	}
 
+	
+	//Horsery
+	if (get_property("horseryAvailable").to_boolean()) {
+		visit_url('place.php?whichplace=town_right&action=town_horsery');
+		run_choice(4);//1266,4
+		if (c2t_hccs_thresholdMet(TEST_HOT_RES))
+			return true;
+		}
+	
 	//pocket maze
 	if (c2t_hccs_getEffect($effect[amazing]) && c2t_hccs_thresholdMet(TEST_HOT_RES))
 		return true;
@@ -1456,6 +1470,14 @@ boolean c2t_hccs_preNoncombat() {
 		if (c2t_hccs_thresholdMet(TEST_NONCOMBAT))
 			return true;
     	}			    
+	
+	//Horsery
+	if (get_property("horseryAvailable").to_boolean()) {
+		visit_url('place.php?whichplace=town_right&action=town_horsery');
+		run_choice(2);//1266,4
+		if (c2t_hccs_thresholdMet(TEST_NONCOMBAT))
+			return true;
+		}		    
 			    
 	//disquiet riot wish potential if 2 or more wishes remain and not close to min turn
 	if (c2t_hccs_testTurns(TEST_NONCOMBAT) >= 9)//TODO better cost/benefit
