@@ -459,6 +459,14 @@ boolean c2t_hccs_preCoil() {
 	if (get_property('_canSeekBirds').to_boolean()) {
 		use(1, $item[Bird-a-Day calendar]);
 		}
+	
+	//Hangk Pulls
+	c2t_hccs_pull($item[repaid diaper]);// saves 3 for fam test
+	c2t_hccs_pull($item[tobiko marble soda]);// saves 3 for spell test replace with meteorite soon
+	c2t_hccs_pull($item[silver face paint]);// saves 4 for fam test
+	c2t_hccs_pull($item[Yegs Motel hand soap]);// saves 4 for fam test
+	c2t_hccs_pull($item[Staff of the Roaring Hearth]);// saves 5 for fam test
+			    
 	//probably should make a property handler, because this looks like it may get unwieldly
 	if (get_property('_clanFortuneConsultUses').to_int() < 3) {
 		c2t_hccs_joinClan(get_property("c2t_hccs_joinClan"));
