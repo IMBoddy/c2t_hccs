@@ -1713,7 +1713,11 @@ boolean c2t_hccs_preSpell() {
 	if (have_skill($skill[meteor lore]) && have_effect($effect[meteor showered]) == 0 && get_property('_saberForceUses').to_int() < 5) {
 		c2t_hccs_levelingFamiliar(true);
 		maximize("mainstat,equip fourth of may cosplay saber",false);
-		adv1($location[thugnderdome],-1,"");//everything is saberable and no crazy NCs
+		if (!c2t_hccs_combatLoversLocket($monster[Witchess Witch]) && !c2t_hccs_genie($monster[Witchess Witch]))
+					abort("Witchess Witch fight fail");
+		else {
+			adv1($location[thugnderdome],-1,"");//everything is saberable and no crazy NCs
+			}
 	}
 
 	if (have_skill($skill[deep dark visions]) && have_effect($effect[visions of the deep dark deeps]) == 0) {
