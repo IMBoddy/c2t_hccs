@@ -1500,7 +1500,7 @@ boolean c2t_hccs_preWeapon() {
 	
 	
 	//Elf Buff for weapon damage
-	if ((have_familiar($familiar[Machine Elf])) && ((have_effect($effect[inner elf])) && (get_property_int('_snokebombUsed') < 3) == 0) {
+	if ((have_familiar($familiar[Machine Elf]))) {
 		c2t_hccs_joinClan(get_property("c2t_hccs_joinElfClan"));
 
 
@@ -1652,7 +1652,7 @@ boolean c2t_hccs_preSpell() {
 	c2t_hccs_getEffect($effect[D-Charged]);		
 		
 	//Elf Buff
-	if ((have_familiar($familiar[Machine Elf])) && ((have_effect($effect[inner elf])) && (get_property_int('_snokebombUsed') < 3) == 0) {
+	if ((have_familiar($familiar[Machine Elf]))) {
 		c2t_hccs_joinClan(get_property("c2t_hccs_joinElfClan"));
 
 
