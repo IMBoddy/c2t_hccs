@@ -1,6 +1,7 @@
 # c2t_hccs
 
 This is a fork from c2t_hccs. Ive added a couple IotM I had that werent suported and added minimal support. 
+* [Horsery contract](https://kol.coldfront.net/thekolwiki/index.php/Horsery_contract)
 * [Bird-a-Day calendar](https://kol.coldfront.net/thekolwiki/index.php/Bird-a-Day_calendar)
 * [Grumpy Bumpkin's Pumpkin Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Grumpy_Bumpkin%27s_Pumpkin_Seed_Catalog)
 * [Pokéfam Guide to Capturing All of Them](https://kol.coldfront.net/thekolwiki/index.php/Pok%C3%A9fam_Guide_to_Capturing_All_of_Them)
@@ -80,6 +81,7 @@ While these are not strictly required, not having enough that either save turns 
 * [Pocket Meteor Guide](https://kol.coldfront.net/thekolwiki/index.php/Pocket_Meteor_Guide) &mdash; with saber saves 4 turns on familiar text, 8 on weapon test, 4 on spell test
 * [pantogram](https://kol.coldfront.net/thekolwiki/index.php/Pantogram) &mdash; saves 2 turns on hot test, 3 on combat test, 0.4 on spell test
 * [locked mumming trunk](https://kol.coldfront.net/thekolwiki/index.php/Locked_mumming_trunk) &mdash; 2-4 stats from combat
+* [Horsery contract](https://kol.coldfront.net/thekolwiki/index.php/Horsery_contract) &mdash; saves a couple turns on non-combat, heat res, and provides buff
 * [Pokéfam Guide to Capturing All of Them](https://kol.coldfront.net/thekolwiki/index.php/Pok%C3%A9fam_Guide_to_Capturing_All_of_Them) &mdash; saves 1.7 on item test if luck incense is pulled, buff for leveling if Snarf Berry is pulled.  
 * [FantasyRealm membership packet](https://kol.coldfront.net/thekolwiki/index.php/FantasyRealm_membership_packet) &mdash; get a hat with +15 mainstat
 * [God Lobster Egg](https://kol.coldfront.net/thekolwiki/index.php/God_Lobster_Egg) &mdash; 3 mid-tier scaling fights & nostalgia pi&ntilde;ata
