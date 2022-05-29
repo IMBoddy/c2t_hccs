@@ -190,7 +190,12 @@ void main(int initround, monster foe, string page) {
 				}
 			case $monster[hobelf]://apparently this doesn't work?
 			case $monster[elf hobo]://this might though?
-			case $monster[Witchess Witch]://trying for broom	
+			case $monster[Witchess Witch]://trying for broom
+				c2t_bbSubmit(
+					mSteal
+					.c2t_bb($skill[meteor shower])
+				);
+				return;
 			case $monster[angry pi&ntilde;ata]:
 				mSteal
 					.c2t_bb($skill[use the force])//don't care about tracking a potential stolen item, so cut it straight away
