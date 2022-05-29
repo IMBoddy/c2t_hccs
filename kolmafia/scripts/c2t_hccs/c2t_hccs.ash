@@ -1746,9 +1746,7 @@ boolean c2t_hccs_preSpell() {
 		maximize("mainstat,equip fourth of may cosplay saber",false);
 		if (!c2t_hccs_combatLoversLocket($monster[Witchess Witch]) && !c2t_hccs_genie($monster[Witchess Witch]))
 					abort("Witchess Witch fight fail");
-		else {
-			adv1($location[thugnderdome],-1,"");//everything is saberable and no crazy NCs
-			}
+	
 	}
 
 	if (have_skill($skill[deep dark visions]) && have_effect($effect[visions of the deep dark deeps]) == 0) {
