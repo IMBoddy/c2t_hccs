@@ -456,7 +456,7 @@ boolean c2t_hccs_preCoil() {
 	c2t_hccs_vote();
 	
 	//Bird-a-day Calendar
-	if (get_property('_canSeekBirds').to_boolean()) {
+	if (available_amount($item[Bird-a-Day calendar]) > 0 {
 		use(1, $item[Bird-a-Day calendar]);
 		}
 	
