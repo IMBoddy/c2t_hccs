@@ -742,6 +742,12 @@ boolean c2t_hccs_buffExp() {
 		visit_url('place.php?whichplace=town_right&action=town_horsery');
 		run_choice(3);//1266,3
 		}
+				
+	//SpaceGate Buff
+	if (get_property("spacegateAlways").to_boolean()) {
+		visit_url('place.php?whichplace=spacegate&action=sg_vaccinator');
+		run_choice(2);//1234,2
+		}
 		
 	
 	//TODO make synthesize selections smarter so the item one doesn't have to be so early
