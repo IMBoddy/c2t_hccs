@@ -1,6 +1,7 @@
 # c2t_hccs
 
 This is a fork from c2t_hccs. Ive added a couple IotM I had that werent suported and added minimal support. 
+* [Spacegate access badge](https://kol.coldfront.net/thekolwiki/index.php/Spacegate_access_badge)
 * [Horsery contract](https://kol.coldfront.net/thekolwiki/index.php/Horsery_contract)
 * [Bird-a-Day calendar](https://kol.coldfront.net/thekolwiki/index.php/Bird-a-Day_calendar)
 * [Grumpy Bumpkin's Pumpkin Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Grumpy_Bumpkin%27s_Pumpkin_Seed_Catalog)
@@ -76,6 +77,7 @@ While these are not strictly required, not having enough that either save turns 
 * [Machine Elf](https://kol.coldfront.net/thekolwiki/index.php/Machine_Elf) &mdash; Doesn't use fights yet, gets inner elf from personal clan, youll need to change this to one of yours in properties, saves up to 2 turns on spell test.
 * [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_terminal) &mdash; saves up to 2 turns on item test.
 * [Tunnel of LOV](https://kol.coldfront.net/thekolwiki/index.php/The_Tunnel_of_L.O.V.E.) &mdash; get's Elixir #3 + #6, Fam Weight Buff, LOV Earrings, LOV Chocolate, saves up to 2 turn on weapon test, 2 on spell test, 2 on Familiar test.
+* [Spacegate access badge](https://kol.coldfront.net/thekolwiki/index.php/Spacegate_access_badge) &mdash; provides stat buff for leveling.
 * [Suspicious Package](https://kol.coldfront.net/thekolwiki/index.php/Suspicious_package) &mdash; saves 5 on hot test, 3 on combat test, 1 on weapon test, 1 on spell test; backup banishes
 * [Asdon Martin](https://kol.coldfront.net/thekolwiki/index.php/Asdon_Martin) &mdash; saves up to 6.66 turns on items test, 6 on non-combat, 1 on heat resistance.
 * [Pocket Meteor Guide](https://kol.coldfront.net/thekolwiki/index.php/Pocket_Meteor_Guide) &mdash; with saber saves 4 turns on familiar text, 8 on weapon test, 4 on spell test
