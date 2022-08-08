@@ -817,3 +817,4 @@ void c2t_hccs_vote() {
 		abort("Voting failed?");
 }
 
+ 
