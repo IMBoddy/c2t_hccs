@@ -835,8 +835,8 @@ boolean c2t_hccs_levelup() {
 	c2t_hccs_pull($item[great wolf's beastly trousers]);//100 mus; saves 2 for fam test
 	c2t_hccs_pull($item[staff of simmering hatred]);//125 mys; saves 4 for spell test
 	//rechecking this sometime after leveling for non-mys since 150 mys is possible
-	if (my_primestat() == $stat[mysticality])
-		c2t_hccs_pull($item[stick-knife of loathing]);//150 mys; saves 4 for spell test
+	if (my_primestat() == $stat[muscle])
+		c2t_hccs_pull($item[stick-knife of loathing]);//150 mus; saves 4 for spell test
 
 	c2t_hccs_allTheBuffs();
 	
@@ -1613,7 +1613,7 @@ boolean c2t_hccs_preWeapon() {
 	//c2t_hccs_briefcase("weapon");//this is the default, but just in case
 
 	//pull stick-knife if able to equip
-	if (my_basestat($stat[mysticality]) >= 150)
+	if (my_basestat($stat[muscle]) >= 150)
 		c2t_hccs_pull($item[stick-knife of loathing]);
 
 	//unbreakable umbrella
@@ -1703,7 +1703,7 @@ boolean c2t_hccs_preSpell() {
 		c2t_hccs_getEffect($effect[baconstoned]);
 
 	//pull stick-knife if able to equip
-	if (my_basestat($stat[mysticality]) >= 150)
+	if (my_basestat($stat[muscle]) >= 150)
 		c2t_hccs_pull($item[stick-knife of loathing]);
 
 	//get up to 2 obsidian nutcracker
