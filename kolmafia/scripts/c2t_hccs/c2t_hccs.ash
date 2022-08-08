@@ -1650,6 +1650,13 @@ boolean c2t_hccs_preWeapon() {
 boolean c2t_hccs_preSpell() {
 	if (my_mp() < 500 && my_mp() != my_maxmp())
 		cli_execute('eat mag saus');
+	
+	//Steal umbrella because of current break
+	if (!have_familiar($familiar[left-hand man]) && available_amount($item[unbreakable umbrella]) > 0)
+		use_familiar($familiar[left-hand man]);
+		cli_execute('unequip familiar');
+		
+		
 
 	// This will use an adventure.
 	// if spit upon == 1, simmering will just waste a turn to do essentially nothing.
