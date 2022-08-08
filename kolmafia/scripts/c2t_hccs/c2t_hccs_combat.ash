@@ -32,8 +32,8 @@ void main(int initround, monster foe, string page) {
 	//to prevent an infinite loop and "speed bump"
 	else {
 		set_property("_c2t_combatReentryCount",(get_property("_c2t_combatReentryCount").to_int()+1).to_string());
-		if (get_property("_c2t_combatReentryCount").to_int() >= 5)
-			abort("The combat script was called at least 5 times without combat resolving");
+		if (get_property("_c2t_combatReentryCount").to_int() >= 6)
+			abort("The combat script was called at least 6 times without combat resolving");
 		c2t_bbSubmit("twiddle;");
 		return;
 	}
