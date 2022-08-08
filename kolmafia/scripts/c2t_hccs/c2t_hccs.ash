@@ -456,7 +456,7 @@ boolean c2t_hccs_preCoil() {
 	c2t_hccs_vote();
 	
 	//Bird-a-day Calendar
-	if (available_amount($item[Bird-a-Day calendar]) > 0 {
+	if (get_property('_canSeekBirds').to_boolean()) {
 		use(1, $item[Bird-a-Day calendar]);
 		}
 	
@@ -742,13 +742,12 @@ boolean c2t_hccs_buffExp() {
 		visit_url('place.php?whichplace=town_right&action=town_horsery');
 		run_choice(3);//1266,3
 		}
-				
+		
 	//SpaceGate Buff
 	if (get_property("spacegateAlways").to_boolean()) {
 		visit_url('place.php?whichplace=spacegate&action=sg_vaccinator');
 		run_choice(2);//1234,2
 		}
-		
 	
 	//TODO make synthesize selections smarter so the item one doesn't have to be so early
 	//synthesize item //put this before all other syntheses so the others don't use too many sprouts
@@ -1654,7 +1653,6 @@ boolean c2t_hccs_preWeapon() {
 
 	//cargo shorts as backup
 	if (available_amount($item[cargo cultist shorts]) > 0
-		&& c2t_hccs_testTurns(TEST_WEAPON) > 4 //4 is how much cargo would save on spell test, so may as well use here if spell is not better
 		&& !get_property('_cargoPocketEmptied').to_boolean())
 			cli_execute("cargo 617");
 
@@ -1752,7 +1750,7 @@ boolean c2t_hccs_preSpell() {
 		maximize("mainstat,equip fourth of may cosplay saber",false);
 		if (!c2t_hccs_combatLoversLocket($monster[Witchess Witch]) && !c2t_hccs_genie($monster[Witchess Witch]))
 					abort("Witchess Witch fight fail");
-	
+		
 	}
 
 	if (have_skill($skill[deep dark visions]) && have_effect($effect[visions of the deep dark deeps]) == 0) {
