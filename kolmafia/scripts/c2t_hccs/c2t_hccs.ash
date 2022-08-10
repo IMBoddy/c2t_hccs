@@ -1737,6 +1737,11 @@ boolean c2t_hccs_preSpell() {
 	// cargo pocket
 	if (available_amount($item[cargo cultist shorts]) > 0 && !get_property('_cargoPocketEmptied').to_boolean())
 		cli_execute("cargo 617");
+				    
+	//Steal umbrella because of current break
+	if (!have_familiar($familiar[left-hand man]) && available_amount($item[unbreakable umbrella]) > 0)
+		use_familiar($familiar[left-hand man]);
+		cli_execute('unequip familiar');
 	
 
 	// meteor lore // moxie can't do this, as it wastes a saber on evil olive -- moxie should be able to do this now with nostalgia earlier?
