@@ -1738,16 +1738,12 @@ boolean c2t_hccs_preSpell() {
 	if (available_amount($item[cargo cultist shorts]) > 0 && !get_property('_cargoPocketEmptied').to_boolean())
 		cli_execute("cargo 617");
 				    
-	//Steal umbrella because of current break
-	if (!have_familiar($familiar[left-hand man]) && available_amount($item[unbreakable umbrella]) > 0)
-		use_familiar($familiar[left-hand man]);
-		cli_execute('unequip familiar');
 	
 
 	// meteor lore // moxie can't do this, as it wastes a saber on evil olive -- moxie should be able to do this now with nostalgia earlier?
 	if (have_skill($skill[meteor lore]) && have_effect($effect[meteor showered]) == 0 && get_property('_saberForceUses').to_int() < 5) {
 		c2t_hccs_levelingFamiliar(true);
-		maximize("mainstat,equip fourth of may cosplay saber",false);
+		maximize("mainstat,equip fourth of may cosplay saber, switch left-hand man, equip umbrella broken",false);
 		if (!c2t_hccs_combatLoversLocket($monster[Witchess Witch]) && !c2t_hccs_genie($monster[Witchess Witch]))
 					abort("Witchess Witch fight fail");
 		
