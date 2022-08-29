@@ -994,6 +994,8 @@ boolean c2t_hccs_allTheBuffs() {
 		cli_execute('telescope high');
 
 	cli_execute('mcd 10');
+	
+	boolean c2t_hccs_summon_bricko_oyster();			       
 				       
 	while (summon_bricko_oyster(11) && available_amount($item[BRICKO oyster]) > 0) {
         c2t_hccs_levelingFamiliar(true);
