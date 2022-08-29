@@ -73,6 +73,7 @@ void c2t_hccs_mod2log(string str);
 void c2t_hccs_printRunTime(boolean final);
 void c2t_hccs_printRunTime() c2t_hccs_printRunTime(false);
 boolean c2t_hccs_fightGodLobster();
+boolean c2t_hccs_summon_bricko_oyster();
 void c2t_hccs_breakfast();
 void c2t_hccs_printTestData();
 void c2t_hccs_testData(string testType,int testNum,int turnsTaken,int turnsExpected);
@@ -195,6 +196,16 @@ boolean c2t_hccs_fightGodLobster() {
 	}
 	return false;
 }
+
+boolean c2t_hccs_summon_bricko_oyster(int max_summons) {
+    if (get_property('_brickoFights').to_int() >= 3) return false;
+    if (available_amount($item[BRICKO oyster]) > 0) return true;
+    while (get_property('libramSummons').to_int() < max_summons && (available_amount($item[BRICKO eye brick]) < 1 || available_amount($item[BRICKO brick]) < 8)) {
+        use_skill(1, $skill[Summon BRICKOs]);
+    }
+    return use(8, $item[BRICKO brick]);
+	}	
+	
 
 void c2t_hccs_testHandler(int test) {
 	print('Checking test ' + test + ': ' + TEST_NAME[test],'blue');
@@ -983,6 +994,18 @@ boolean c2t_hccs_allTheBuffs() {
 		cli_execute('telescope high');
 
 	cli_execute('mcd 10');
+				       
+	while (summon_bricko_oyster(11) && available_amount($item[BRICKO oyster]) > 0) {
+        c2t_hccs_levelingFamiliar(true);
+        if (my_hp() < .8 * my_maxhp()) {
+            visit_url('clan_viplounge.php?where=hottub');
+        }
+        if (my_mp() < 30)
+			cli_execute('rest free');
+        use(1, $item[BRICKO oyster]);
+        autosell(1, $item[BRICKO pearl]);
+        run_combat();
+   			       
 
 	return true;
 }
