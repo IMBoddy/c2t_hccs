@@ -1517,13 +1517,7 @@ boolean c2t_hccs_preWeapon() {
 		adv1($location[the dire warren],-1,"");
 	}*/
 
-	if (have_effect($effect[in a lather]) == 0) {
-		if (my_inebriety() > inebriety_limit() - 2)
-			abort('Something went wrong. We are too drunk.');
-		c2t_assert(my_meat() >= 500,"Need 500 meat for speakeasy booze");
-		ensure_ode(2);
-		cli_execute('drink Sockdollager');
-	}
+	
 
 	if (available_amount($item[twinkly nuggets]) > 0)
 		c2t_hccs_getEffect($effect[twinkly weapon]);
