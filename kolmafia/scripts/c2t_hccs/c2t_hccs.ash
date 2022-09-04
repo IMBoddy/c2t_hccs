@@ -73,6 +73,7 @@ void c2t_hccs_mod2log(string str);
 void c2t_hccs_printRunTime(boolean final);
 void c2t_hccs_printRunTime() c2t_hccs_printRunTime(false);
 boolean c2t_hccs_fightGodLobster();
+boolean c2t_hccs_summon_bricko_oyster();
 void c2t_hccs_breakfast();
 void c2t_hccs_printTestData();
 void c2t_hccs_testData(string testType,int testNum,int turnsTaken,int turnsExpected);
@@ -196,6 +197,16 @@ boolean c2t_hccs_fightGodLobster() {
 	return false;
 }
 	
+
+
+boolean c2t_hccs_summon_bricko_oyster() {
+    if (get_property('_brickoFights').to_int() >= 3) return false;
+    if (available_amount($item[BRICKO oyster]) > 0) return true;
+    while (get_property('libramSummons').to_int() < max_summons && (available_amount($item[BRICKO eye brick]) < 1 || available_amount($item[BRICKO brick]) < 8)) {
+        use_skill(1, $skill[Summon BRICKOs]);
+    }
+    return use(8, $item[BRICKO brick]);
+}	
 
 void c2t_hccs_testHandler(int test) {
 	print('Checking test ' + test + ': ' + TEST_NAME[test],'blue');
@@ -1045,6 +1056,10 @@ boolean c2t_hccs_lovePotion(boolean useit,boolean dumpit) {
 }
 
 boolean c2t_hccs_preItem() {
+	
+	//Oyster Fights for charging
+	boolean c2t_hccs_summon_bricko_oyster();
+	
 	//shrug off an AT buff
 	cli_execute("shrug ur-kel");
 
