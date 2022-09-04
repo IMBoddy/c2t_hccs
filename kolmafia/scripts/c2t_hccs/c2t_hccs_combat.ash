@@ -190,6 +190,7 @@ void main(int initround, monster foe, string page) {
 				}
 			case $monster[hobelf]://apparently this doesn't work?
 			case $monster[elf hobo]://this might though?
+			case $monster[BRICKO oyster]://Charging Fight	
 			case $monster[Witchess Witch]://trying for broom	
 				c2t_bbSubmit(
 					mSteal
