@@ -1193,7 +1193,7 @@ boolean c2t_hccs_preItem() {
 }
 
 boolean c2t_hccs_preHotRes() {
-	string maxstr = "100hot res,familiar weight,switch exotic parrot,switch mu";
+	string maxstr = "100hot res,familiar weight,switch exotic parrot,switch mu,switch left-hand man";
 	
 	//cloake buff and fireproof foam suit for +32 hot res total, but also weapon and spell test buffs
 	//weapon/spell buff should last 15 turns, which is enough to get through hot(1), NC(9), and weapon(1) tests to also affect the spell test
@@ -1257,20 +1257,23 @@ boolean c2t_hccs_preHotRes() {
 		return true;
 
 	//potion for sleazy hands & hot powder
-	if (have_effect($effect[flame-retardant trousers]) == 0 || have_effect($effect[sleazy hands]) == 0) {
-		//potion making not needed with retro cape
-		retrieve_item(1,$item[tenderizing hammer]);
-		cli_execute('smash * ratty knitted cap');
-		cli_execute('smash * red-hot sausage fork');
+	if (c2t_hccs_freeCraftsLeft() > 0 || (have_effect($effect[fireproof foam suit]) == 0 && have_effect($effect[misty form]) == 0)) {
+		if (have_effect($effect[flame-retardant trousers]) == 0 || have_effect($effect[sleazy hands]) == 0) {
+			//potion making not needed with retro cape
+			retrieve_item(1,$item[tenderizing hammer]);
+			cli_execute('smash * ratty knitted cap');
+			cli_execute('smash * red-hot sausage fork');
 
-		if (available_amount($item[hot powder]) > 0)
-			c2t_hccs_getEffect($effect[flame-retardant trousers]);
 
-		if (available_amount($item[sleaze nuggets]) > 0 || available_amount($item[lotion of sleaziness]) > 0)
-			c2t_hccs_getEffect($effect[sleazy hands]);
+			if (available_amount($item[hot powder]) > 0)
+				c2t_hccs_getEffect($effect[flame-retardant trousers]);
+
+			if (available_amount($item[sleaze nuggets]) > 0 || available_amount($item[lotion of sleaziness]) > 0)
+				c2t_hccs_getEffect($effect[sleazy hands]);
 
 		if (c2t_hccs_thresholdMet(TEST_HOT_RES))
-			return true;
+				return true;
+		}
 	}
 
 	
@@ -1538,7 +1541,7 @@ boolean c2t_hccs_preWeapon() {
 	}
 	
 	//pizza cube prep since making this takes a turn without free crafts
-	if (c2t_hccs_pizzaCube())
+	if (c2t_hccs_pizzaCube() && c2t_hccs_freeCraftsLeft() == 0)
 		retrieve_item(1,$item[ointment of the occult]);
 
 	//cast triple size
@@ -2185,8 +2188,17 @@ void c2t_hccs_fights() {
 
 	set_location($location[the neverending party]);
 
+	int start = my_turncount();			   
 	//NEP loop //neverending party and backup camera fights
 	while (get_property("_neverendingPartyFreeTurns").to_int() < 10 || c2t_hccs_freeKillsLeft() > 0) {
+		if (my_turncount() > start) {
+			print("a turn was used in the neverending party loop","red");
+			print("aborting in case mafia tracking broke somewhere or some unforseen thing happened","red");
+			print("if ALL the stat tests can be completed in 1 turn right now, it may be better to do those manually then rerun this","red");
+			print("this may be safe to run again, but probably best to not if turns keep being used here","red");
+			abort("be sure to report if this problem persists");
+		}
+
 		// -- combat logic --
 		//use doc bag kills first after free fights
 		if (available_amount($item[lil' doctor&trade; bag]) > 0
@@ -2265,6 +2277,11 @@ void c2t_hccs_fights() {
 			}
 			c2t_hccs_getEffect($effect[tomato power]);
 			c2t_assert(have_effect($effect[tomato power]) > 0,'It somehow missed again.');
+			
+			if (my_turncount() > start) {
+				print(`detected {my_turncount()-start} turns used for crafting`);
+				start = my_turncount();
+			}
 		}
 
 		// -- setup and combat itself --
