@@ -32,8 +32,8 @@ void main(int initround, monster foe, string page) {
 	//to prevent an infinite loop and "speed bump"
 	else {
 		set_property("_c2t_combatReentryCount",(get_property("_c2t_combatReentryCount").to_int()+1).to_string());
-		if (get_property("_c2t_combatReentryCount").to_int() >= 6)
-			abort("The combat script was called at least 6 times without combat resolving");
+		if (get_property("_c2t_combatReentryCount").to_int() >= 7)
+			abort("The combat script was called at least 7 times without combat resolving");
 		c2t_bbSubmit("twiddle;");
 		return;
 	}
@@ -134,10 +134,10 @@ void main(int initround, monster foe, string page) {
 					mHead + mSteal
 					.c2t_bb(have_effect($effect[bat-adjacent form]) == 0?c2t_bb($skill[become a bat]):"")
 					.c2t_bb(have_effect($effect[cosmic ball in the air]) == 0?c2t_bb($skill[bowl straight up]):"")
-					.c2t_bb($skill[reflex hammer])
 					.c2t_bb($skill[kgb tranquilizer dart])
-					.c2t_bb($skill[snokebomb])
 					.c2t_bb($skill[feel hatred])
+					.c2t_bb($skill[snokebomb])
+					.c2t_bb($skill[reflex hammer])
 				);
 				return;
 
@@ -244,7 +244,7 @@ void main(int initround, monster foe, string page) {
 			case $monster[terrible mutant]:
 			case $monster[angry ghost]:
 			case $monster[annoyed snake]:
-			case $monster[BRICKO oyster]://Charging Fight	
+			case $monster[BRICKO oyster]:	
 			case $monster[slime blob]:
 				c2t_bbSubmit(mHead + mSteal + mBasic);
 				return;
@@ -288,7 +288,7 @@ void main(int initround, monster foe, string page) {
 						c2t_bbWhile("!pastround 20","attack;")
 					)
 					.c2t_bbIf("pastamancer || sauceror",
-						c2t_bb(4,$skill[saucestorm])
+						c2t_bb(7,$skill[saucestorm])
 					)
 				);
 				return;
@@ -335,8 +335,8 @@ void main(int initround, monster foe, string page) {
 			case $monster[migratory pirate]:
 			case $monster[peripatetic pirate]:
 				m = mHead + mSteal;
-				m += c2t_bb($skill[reflex hammer]);
 				m += c2t_bb($skill[kgb tranquilizer dart]);
+				m += c2t_bb($skill[reflex hammer]);
 				if (get_property("_snokebombUsed").to_int() <= get_property("_feelHatredUsed").to_int())
 					m += c2t_bb($skill[snokebomb]).c2t_bb($skill[feel hatred]);
 				else
