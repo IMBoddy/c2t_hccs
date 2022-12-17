@@ -11,7 +11,7 @@ import <c2t_hccs_preAdv.ash>
 import <c2t_cartographyHunt.ash>
 import <c2t_lib.ash>
 import <c2t_cast.ash>
-import <canadv.ash>
+
 
 int START_TIME = now_to_int();
 
@@ -73,6 +73,7 @@ void c2t_hccs_mod2log(string str);
 void c2t_hccs_printRunTime(boolean final);
 void c2t_hccs_printRunTime() c2t_hccs_printRunTime(false);
 boolean c2t_hccs_fightGodLobster();
+boolean c2t_hccs_summon_bricko_oyster();
 void c2t_hccs_breakfast();
 void c2t_hccs_printTestData();
 void c2t_hccs_testData(string testType,int testNum,int turnsTaken,int turnsExpected);
@@ -196,6 +197,16 @@ boolean c2t_hccs_fightGodLobster() {
 	return false;
 }
 	
+
+
+boolean c2t_hccs_summon_bricko_oyster() {
+    
+   
+    while (get_property('brickoEyeSummons').to_int() < 3 && (available_amount($item[BRICKO eye brick]) < 1 || available_amount($item[BRICKO brick]) < 8)) {
+        use_skill(1, $skill[Summon BRICKOs]);
+    }
+    return use(8, $item[BRICKO brick]);
+}	
 
 
 void c2t_hccs_testHandler(int test) {
@@ -444,6 +455,9 @@ void c2t_hccs_exit() {
 }
 
 boolean c2t_hccs_preCoil() {
+	//numberology first thing to get adventures
+	c2t_hccs_useNumberology();
+
 	//get a grain of sand for pizza if muscle class
 	if (available_amount($item[beach comb]) > 0
 		&& my_primestat() == $stat[muscle]
@@ -812,19 +826,24 @@ boolean c2t_hccs_buffExp() {
 
 // should handle leveling up and eventually call free fights
 boolean c2t_hccs_levelup() {
-	//need adventures straight away if running CMC
+	//CMC booze
 	item itew = c2t_priority($item[doc's fortifying wine],$item[doc's smartifying wine],$item[doc's limbering wine]);
 	if (itew != $item[none]) {
 		c2t_hccs_getEffect($effect[ode to booze]);
 		drink(1,itew);
 	}
-	//TODO alt easy food/booze to get over 0 adv
-	else if (my_adventures() == 0) {
+	//need adventures straight away if dangerously low
+	else if (my_adventures() <= 1) {
+		//TODO more booze options
+		//eye and a twist from crimbo 2020
 		c2t_hccs_haveUse($skill[eye and a twist]);
-		if (item_amount($item[eye and a twist]) > 0) {
+		if (item_amount($item[eye and a twist]) > 0)
+			itew = $item[eye and a twist];
+		c2t_assert(itew != $item[none],"could not get booze to get more adventures");
+
 			c2t_hccs_getEffect($effect[ode to booze]);
-			drink(1,$item[eye and a twist]);
-		}
+			drink(1,itew);
+		
 	}
 	c2t_assert(my_adventures() > 0,"not going to get far with zero adventures");
 
@@ -1057,12 +1076,12 @@ boolean c2t_hccs_preItem() {
 		maximize("mainstat,equip latte,1000 bonus lil doctor bag,1000 bonus kremlin's greatest briefcase,1000 bonus vampyric cloake,6 bonus designer sweatpants",false);
 		c2t_hccs_levelingFamiliar(true);
 
-		while ((have_equipped($item[vampyric cloake]) && have_effect($effect[bat-adjacent form]) == 0) || !get_property('latteUnlocks').contains_text('carrot'))
+		while (have_equipped($item[vampyric cloake]) && have_effect($effect[bat-adjacent form]) == 0)
 			adv1($location[the dire warren],-1,"");
 	}
 
-	if (!get_property('latteModifier').contains_text('Item Drop') && get_property('_latteBanishUsed') == 'true')
-		cli_execute('latte refill cinnamon carrot vanilla');
+	
+	
 
 	c2t_hccs_getEffect($effect[fat leon's phat loot lyric]);
 	c2t_hccs_getEffect($effect[singer's faithful ocelot]);
@@ -1122,7 +1141,7 @@ boolean c2t_hccs_preItem() {
 	c2t_hccs_getEffect($effect[steely-eyed squint]);
 
 	//unbreakable umbrella
-	cli_execute("try;umbrella item");
+	c2t_hccs_unbreakableUmbrella("item");
 
 	maximize('item,2 booze drop,-equip broken champagne bottle,-equip surprisingly capacious handbag,-equip red-hot sausage fork,switch left-hand man',false);
 	if (c2t_hccs_thresholdMet(TEST_ITEM))
@@ -1425,7 +1444,7 @@ boolean c2t_hccs_preNoncombat() {
 	use_familiar($familiar[disgeist]);
 
 	//unbreakable umbrella
-	cli_execute("try;umbrella nc");
+	c2t_hccs_unbreakableUmbrella("nc");
 
 	maximize('-100combat,familiar weight',false);
 	maximize('-100combat,familiar weight',false);
@@ -1624,7 +1643,7 @@ boolean c2t_hccs_preWeapon() {
 		c2t_hccs_pull($item[stick-knife of loathing]);
 
 	//unbreakable umbrella
-	cli_execute("try;umbrella weapon");
+	c2t_hccs_unbreakableUmbrella("weapon");
 	
 	maximize('weapon damage,switch left-hand man',false);
 	if (c2t_hccs_thresholdMet(TEST_WEAPON))
@@ -1792,7 +1811,7 @@ boolean c2t_hccs_preSpell() {
 	c2t_hccs_briefcase("spell");
 
 	//unbreakable umbrella
-	cli_execute("try;umbrella spell");
+	c2t_hccs_unbreakableUmbrella("spell");
 
 	maximize('spell damage,switch left-hand man',false);
 
@@ -1950,7 +1969,7 @@ void c2t_hccs_fights() {
 				visit_url('shop.php?whichshop=meatsmith&action=talk');
 				run_choice(1);
 			}
-			if (!can_adv($location[the skeleton store],false))
+			if (!can_adventure($location[the skeleton store]))
 				abort('Cannot open skeleton store!');
 			if ($location[the skeleton store].turns_spent == 0 && !$location[the skeleton store].noncombat_queue.contains_text('Skeletons In Store'))
 				adv1($location[the skeleton store],-1,'');
@@ -2084,13 +2103,24 @@ void c2t_hccs_fights() {
 	}
 	
 	//Brickos
-	while (get_property('brickoEyeSummons').to_int() < 3 && (available_amount($item[BRICKO eye brick]) < 1 || available_amount($item[BRICKO brick]) < 8)) {
-  		use_skill(1, $skill[Summon BRICKOs]);
-		if (available_amount($item[BRICKO brick]) > 8) {
-			use(8, $item[BRICKO brick]);
-			}
-		}
+	while (get_property('brickoEyeSummons').to_int() < 3 && (available_amount($item[BRICKO eye brick]) < 3 || available_amount($item[BRICKO brick]) < 24)) {
+       use_skill(1, $skill[Summon BRICKOs]);
+	}
 		
+	
+	if (available_amount($item[BRICKO brick]) > 8) {
+			use(8, $item[BRICKO brick]);
+	}
+	
+	if (available_amount($item[BRICKO brick]) > 8) {
+			use(8, $item[BRICKO brick]);
+	}
+	
+	if (available_amount($item[BRICKO brick]) > 7) {
+			use(8, $item[BRICKO brick]);
+	}
+		
+				   
 	while (available_amount($item[BRICKO oyster]) > 0) {
         	c2t_hccs_levelingFamiliar(true);
         	if (my_hp() < .8 * my_maxhp()) {
