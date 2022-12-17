@@ -2044,7 +2044,7 @@ void c2t_hccs_fights() {
 					cli_execute('latte refill cinnamon pumpkin vanilla');
 				//max mp to max latte gulp to fuel buffs
 				c2t_hccs_levelingFamiliar(true);
-				maximize("mp,-equip garbage shirt,equip latte,100 bonus vampyric cloake,100 bonus lil doctor bag,100 bonus kremlin's greatest briefcase"+fam,false);
+				maximize("mp,-equip garbage shirt,equip latte,100 bonus vampyric cloake,100 bonus lil doctor bag,100 bonus kremlin's greatest briefcase,6 bonus designer sweatpants"+fam,false);
 
 				c2t_hccs_cartography($location[the haunted pantry],$monster[possessed can of tomatoes]);
 			}
