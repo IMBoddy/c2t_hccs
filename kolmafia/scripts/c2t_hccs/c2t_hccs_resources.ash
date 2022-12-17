@@ -24,6 +24,7 @@ import <c2t_hccs_preAdv.ash>
 //d--garden peppermint
 //d--genie
 //d--melodramedary
+//d--numberology
 //d--pantogram
 //d--pillkeeper
 //d--pizza cube
@@ -32,6 +33,7 @@ import <c2t_hccs_preAdv.ash>
 //d--sweet synthesis
 //d--tome clip art
 //d--tome sugar
+//d--unbreakable umbrella
 //d--vip floundry
 //d--vote
 
@@ -93,6 +95,14 @@ boolean c2t_hccs_melodramedary();
 
 //returns spit charge
 int c2t_hccs_melodramedarySpit();
+
+//d--numberology
+//returns true if have at least 1 level of numberology
+boolean c2t_hccs_haveNumberology();
+
+//uses numberology to get adventures
+//returns true if successful
+boolean c2t_hccs_useNumberology();
 
 
 //d--pantogram
@@ -159,6 +169,14 @@ boolean c2t_hccs_tomeSugar();
 //returns true if item obtained
 boolean c2t_hccs_tomeSugar(item it);
 
+//d--unbreakable umbrella
+//returns true if have umbrella
+boolean c2t_hccs_unbreakableUmbrella();
+
+//returns true if all steps to change mode done
+boolean c2t_hccs_unbreakableUmbrella(string mode);
+
+
 
 //d--vip floundry
 //returns true if current clan has floundry
@@ -180,6 +198,7 @@ void c2t_hccs_vote();
 //i--combat lover's locket
 //i--garden peppermint
 //i--genie
+//i--numberology
 //i--melodramedary
 //i--pantogram
 //i--pillkeeper
@@ -189,6 +208,7 @@ void c2t_hccs_vote();
 //i--sweet synthesis
 //i--tome clip art
 //i--tome sugar
+//i--unbreakable umbrella
 //i--vip floundry
 //i--vote
 
@@ -329,6 +349,25 @@ boolean c2t_hccs_genie(monster mon) {
 	return true;
 }
 
+//i--numberology
+boolean c2t_hccs_haveNumberology() {
+	int max = get_property("skillLevel144").to_int();
+	return max > 0;
+}
+boolean c2t_hccs_useNumberology() {
+	if (!c2t_hccs_haveNumberology())
+		return false;
+	int max = min(3,get_property("skillLevel144").to_int());//max 3 uses in ronin and hardcore
+	int used = get_property("_universeCalculated").to_int();
+	int start = my_adventures();
+	if (used >= max)
+		return false;
+	//burn uses on +3 adventures each
+	for i from 1 to max-used
+		cli_execute("numberology 69");
+	return my_adventures() > start;
+}
+
 //i--melodramedary
 boolean c2t_hccs_melodramedary() {
 	return have_familiar($familiar[melodramedary])
@@ -369,6 +408,7 @@ void c2t_hccs_pantogram(string type) {
 		//primestat,hot res,+mp,+spell,-combat
 		visit_url(`choice.php?pwd&whichchoice=1270&option=1&e=1&s1=-2,0&s2={mod}&s3=-1,0&m={temp}`,true,true);
 		cli_execute("refresh all");//mafia doesn't know the pants exist until this
+		visit_url("desc_item.php?whichitem=508365377",false,true);//attempted fix for very rare bug where all pants mods aren't recorded by mafia
 	}
 }
 
@@ -759,6 +799,38 @@ boolean c2t_hccs_tomeSugar(item it) {
 	}
 	return retrieve_item(it);
 }
+
+//i--unbreakable umbrella
+boolean c2t_hccs_unbreakableUmbrella() {
+	return available_amount($item[unbreakable umbrella]) > 0;
+}
+boolean c2t_hccs_unbreakableUmbrella(string mode) {
+	if (!c2t_hccs_unbreakableUmbrella())
+		return false;
+	switch (mode) {
+		default:
+			return false;
+		case "ml":
+		case "item":
+		case "dr":
+		case "weapon":
+		case "spell":
+		case "nc":
+		case "broken":
+		case "forward":
+		case "bucket":
+		case "pitchfork":
+		case "twirling":
+		case "cocoon":
+	}
+	//kol won't allow umbrella mode change if it's on an inactive familiar, so retrieve it if needed
+	item ite = $item[unbreakable umbrella];
+	if (!have_equipped(ite) && item_amount(ite) == 0)
+		retrieve_item(ite);
+	cli_execute(`umbrella {mode}`);
+	return true;
+}
+
 
 //i--vip floundry
 boolean c2t_hccs_vipFloundry() {
