@@ -1,7 +1,7 @@
 //c2t hccs
 //c2t
 
-since r26534;//designer sweatpants
+since r26992;//model train set
 
 import <c2t_hccs_lib.ash>
 import <c2t_hccs_resources.ash>
@@ -545,6 +545,10 @@ boolean c2t_hccs_preCoil() {
 
 	//pantagramming
 	c2t_hccs_pantogram();
+	
+	//model train set
+	c2t_hccs_modelTrainSet();
+
 
 	//backup camera settings
 	if (get_property('backupCameraMode') != 'ml' || !get_property('backupCameraReverserEnabled').to_boolean())
