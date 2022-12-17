@@ -422,7 +422,7 @@ int c2t_hccs_melodramedarySpit() {
 	return get_property('camelSpit').to_int();
 }
 
-//d--model train set
+//i--model train set
 boolean c2t_hccs_haveModelTrainSet() return get_workshed() == $item[model train set];
 void c2t_hccs_modelTrainSet() {
 	if (!c2t_hccs_haveModelTrainSet())
@@ -466,7 +466,7 @@ void c2t_hccs_modelTrainSet() {
 			alt1 = 16;
 			alt2 = 17;
 	}
-	if (visit_url("campground.php?action=workshed",false,true).contains_text('input type="submit" class="button" value="Reconfigure your Train Set"'))
+	if (visit_url("campground.php?action=workshed",false,true).contains_text('value="Save Train Set Configuration"'))
 		//meat,double,main,all stats,alt1,alt2,ML,hot resist
 		visit_url(`choice.php?pwd&whichchoice=1485&option=1&slot[0]=1&slot[1]=8&slot[2]={main}&slot[3]=3&slot[4]={alt1}&slot[5]={alt2}&slot[6]=13&slot[7]=4`,true,true);
 	//let mafia know we're not stuck in the choice
