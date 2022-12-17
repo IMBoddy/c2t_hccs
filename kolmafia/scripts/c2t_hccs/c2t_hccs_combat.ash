@@ -12,6 +12,9 @@ import <c2t_hccs_resources.ash>
 string c2t_hccs_bowlSideways();
 string c2t_hccs_bowlSideways(string m);
 
+//handle some skills with charges
+string c2t_hccs_bbChargeSkill(string m,skill ski);
+string c2t_hccs_bbChargeSkill(skill ski);
 
 void main(int initround, monster foe, string page) {
 	//saber force
@@ -20,23 +23,7 @@ void main(int initround, monster foe, string page) {
 		return;
 	}
 
-	//guessing that macros might be submitted too fast in certain cases, so trying this as a speed bump
-	if (get_property("_c2t_lastCombatStarted") != get_property("_lastCombatStarted")) {
-		set_property("_c2t_lastCombatStarted",get_property("_lastCombatStarted"));
-		set_property("_c2t_lastCombatFoe",foe.to_string());
-		set_property("_c2t_combatReentryCount","0");
-	}
-	//should allow backups through?
-	else if (foe.to_string() != get_property("_c2t_lastCombatFoe"))
-		set_property("_c2t_lastCombatFoe",foe.to_string());
-	//to prevent an infinite loop and "speed bump"
-	else {
-		set_property("_c2t_combatReentryCount",(get_property("_c2t_combatReentryCount").to_int()+1).to_string());
-		if (get_property("_c2t_combatReentryCount").to_int() >= 7)
-			abort("The combat script was called at least 7 times without combat resolving");
-		c2t_bbSubmit("twiddle;");
-		return;
-	}
+	
 
 
 	string mHead = "scrollwhendone;";
