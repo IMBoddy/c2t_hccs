@@ -701,7 +701,7 @@ boolean c2t_hccs_preCoil() {
 	c2t_assert(retrieve_item(1,$item[bitchin' meatcar]),"Couldn't get a bitchin' meatcar");
 					 
 	//Asdon Grab for loaves (Pre)
-	if get_workshed() == $item[Asdon Martin keyfob] {
+	if (get_campground() contains $item[Asdon Martin keyfob]) {
 		buy(8,$item[wad of dough]);
 	}	
 					 
@@ -1106,14 +1106,14 @@ boolean c2t_hccs_preItem() {
 	
 				   
 	//Asdon Martin Buff
-	if get_workshed() == $item[Asdon Martin keyfob] {
+	if (get_campground() contains $item[Asdon Martin keyfob]) {
 		create(8,$item[loaf of soda bread]);
 		cli_execute( "asdonmartin fuel 8 loaf of soda bread" );
         	c2t_hccs_getEffect($effect[Driving Observantly]);
     	}		
 				   
 	//Pumpkin grab for item
-	if get_workshed() == $item[packet of pumpkin seeds] {
+	if (get_campground() contains $item[packet of pumpkin seeds]) {
 		cli_execute( "garden pick" );
 		c2t_hccs_haveUse($item[pumpkin]);
 		c2t_hccs_haveUse($item[pumpkin juice]);	
@@ -1309,7 +1309,7 @@ boolean c2t_hccs_preHotRes() {
 	}
 
 	//Asdon Martin Buff for Heat
-	if get_workshed() == $item[Asdon Martin keyfob] {
+	if (get_campground() contains $item[Asdon Martin keyfob]) {
 		if (available_amount($item[wad of dough]) < 8) {
 			buy(1,$item[all-purpose flower]);
 			use(1,$item[all-purpose flower]);
@@ -1519,7 +1519,7 @@ boolean c2t_hccs_preNoncombat() {
 	}
 
 	//Asdon Martin Buff for NC
-	if get_workshed() == $item[Asdon Martin keyfob] {
+	if (get_campground() contains $item[Asdon Martin keyfob]) {
 		if (available_amount($item[wad of dough]) < 8) {
 			buy(1,$item[all-purpose flower]);
 			use(1,$item[all-purpose flower]);
