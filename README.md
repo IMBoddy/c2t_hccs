@@ -10,7 +10,7 @@ This is a fork from c2t_hccs. Ive added a couple IotM I had that werent suported
 * [Tunnel of LOV](https://kol.coldfront.net/thekolwiki/index.php/The_Tunnel_of_L.O.V.E.)
 * [Asdon Martin](https://kol.coldfront.net/thekolwiki/index.php/Asdon_Martin)
 * [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_terminal)
-* [MayDay™ supply package](https://kol.coldfront.net/thekolwiki/index.php/MayDay%E2%84%A2_supply_package)
+
 
 Kolmafia script to handle a hardcore community service run with my set of skills and IotMs and with any class.
 
@@ -39,7 +39,8 @@ Then follow the [installation section](#installation--uninstallation) above
 * Not likely to run out-of-the-box for most. Hoping to change this eventually
 * Able to be re-run at any point in a run, hopefully after manually correcting whatever caused it to stop
 * Will abort when a non-coil test does not meet its turn threshold after preparations for it are done, which defaults to 1 turn
-* Pre-Valhalla: put diabolic pizza cube in the workshed. Pizza cube can be optional _if_ you have most of the IotM in the lists below
+Workshed: select diabolic pizza cube in the options for the workshed if you have it and haven't run this before, since that will give the greatest chance of success. Pizza cube can be optional _if_ you have most of the IotM in the lists below
+* Muscle classes: need to have the [prevent scurvy and sobriety](https://kol.coldfront.net/thekolwiki/index.php/Prevent_Scurvy_and_Sobriety) skill permed, otherwise stat tests may be difficult to pass. Can optionally pull an [oil of stability](https://kol.coldfront.net/thekolwiki/index.php/Oil_of_stability) if in softcore before running.
 * In Valhalla:
     - Choose any class
     - Choose the corresponding "knoll" moonsign
@@ -56,12 +57,12 @@ Resources can be disabled with the same relay script.
 
 ## IotM
 
-The script assumes several IotM are owned and will break without them. In addition, the [sweet synthesis](https://kol.coldfront.net/thekolwiki/index.php/Sweet_Synthesis) and [Summon Crimbo Candy](https://kol.coldfront.net/thekolwiki/index.php/Summon_Crimbo_Candy) skills, as well as the [Imitation Crab](https://kol.coldfront.net/thekolwiki/index.php/Imitation_Crab) familiar, are currently required.
+The script assumes several IotM are owned and will break without them. In addition, the [sweet synthesis](https://kol.coldfront.net/thekolwiki/index.php/Sweet_Synthesis) skill is very highly recommended, and the [Summon Crimbo Candy](https://kol.coldfront.net/thekolwiki/index.php/Summon_Crimbo_Candy) skill is required to fuel sweet synthesis. Also, the [Imitation Crab](https://kol.coldfront.net/thekolwiki/index.php/Imitation_Crab) familiar is required if using the pizza cube.
 
 Some of the required IotM are only required for now because they're explicitly used in the script without any checks. Some will be moved to the supported list as I get around to adding the necessary checks. I'll be working on trying to minimize the required list, but do note one will probably still need to have a critical mass of IotM for the script to run smoothly.
 
 ### Required IotM (ordered by release date)
-* [Tome of Clip Art](https://kol.coldfront.net/thekolwiki/index.php/Tome_of_Clip_Art)
+* [Tome of Clip Art](https://kol.coldfront.net/thekolwiki/index.php/Tome_of_Clip_Art) &mdash; can be somewhat possible to get around this requirement by pulling a [borrowed time](https://kol.coldfront.net/thekolwiki/index.php/Borrowed_time) prior to running
 * [Clan VIP Lounge invitation](https://kol.coldfront.net/thekolwiki/index.php/Clan_VIP_Lounge_invitation) &mdash; assumes a fully-stocked VIP lounge
 * [corked genie bottle](https://kol.coldfront.net/thekolwiki/index.php/Corked_genie_bottle)
 * [January's Garbge Tote (unopened)](https://kol.coldfront.net/thekolwiki/index.php/January%27s_Garbage_Tote_(unopened))
@@ -80,6 +81,7 @@ Some of the required IotM are only required for now because they're explicitly u
 While these are not strictly required, not having enough that either save turns or significantly help with leveling may cause problems. The blurb after the em dash (&mdash;) is basically what the script uses the IotM for.
 
 * [Grumpy Bumpkin's Pumpkin Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Grumpy_Bumpkin%27s_Pumpkin_Seed_Catalog) &mdash; saves 1.3 turns on item test.
+* [panicked kernel](https://kol.coldfront.net/thekolwiki/index.php/Panicked_kernel) &mdash; can potentially save a turn if lacking an astral pet sweater or better
 * [Mint Salton Pepper's Peppermint Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Mint_Salton_Pepper%27s_Peppermint_Seed_Catalog) &mdash; used to get the synthesize item buff to save 10 turns on the item test; provides backup candies for other synthesis buffs
 * [Machine Elf](https://kol.coldfront.net/thekolwiki/index.php/Machine_Elf) &mdash; Doesn't use fights yet, gets inner elf from personal clan, youll need to change this to one of yours in properties, saves up to 2 turns on spell test.
 * [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_terminal) &mdash; saves up to 2 turns on item test.
@@ -125,6 +127,8 @@ While these are not strictly required, not having enough that either save turns 
 * [MayDay™ supply package](https://kol.coldfront.net/thekolwiki/index.php/MayDay%E2%84%A2_supply_package) &mdash; RtS Effect minor level help + hot res, if acquired - support for emergency glowstick (1.7 turns on item test) + space blanket (Autosell in-case) + gaffer's tape (Buff Moxie class)
 * [packaged June cleaver](https://kol.coldfront.net/thekolwiki/index.php/Packaged_June_cleaver) &mdash; Support for NC adventures
 * [designer sweatpants (new old stock)](https://kol.coldfront.net/thekolwiki/index.php/Designer_sweatpants_(new_old_stock)) &mdash; Charges pants and NPC store discount
+* [unopened tiny stillsuit](https://kol.coldfront.net/thekolwiki/index.php/Unopened_tiny_stillsuit) &mdash; if this is not equipped while adventuring, it will be placed on a familiar in the terrarium to passively build up
+* [packaged model train set](https://kol.coldfront.net/thekolwiki/index.php/Packaged_model_train_set) &mdash; lots of extra stats from fights and can smooth out any meat problems
 
 ## Bugs?
 Report bugs here: https://github.com/C2Talon/c2t_hccs/issues
