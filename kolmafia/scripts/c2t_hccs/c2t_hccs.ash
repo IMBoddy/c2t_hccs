@@ -2413,6 +2413,7 @@ void c2t_hccs_fights() {
 		if (!c2t_hccs_backupCamera() && get_property('_pocketProfessorLectures').to_int() == 0) {
 			use_familiar($familiar[pocket professor]);
 			maximize("mainstat,equip garbage shirt,equip kramco,100familiar weight,6 bonus designer sweatpants",false);
+			restore_hp(my_maxhp());
 		}
 		//9+ professor copies, after getting exp buff from NC and used sauceror potions
 		else if (get_property('_pocketProfessorLectures').to_int() == 0
@@ -2425,6 +2426,7 @@ void c2t_hccs_fights() {
 
 			use_familiar($familiar[pocket professor]);
 			maximize("mainstat,equip garbage shirt,equip kramco,100familiar weight,6 bonus designer sweatpants,equip backup camera",false);
+			restore_hp(my_maxhp());
 		}
 		//fish for latte carrot ingredient with backup fights
 		else if (get_property('_pocketProfessorLectures').to_int() > 0
