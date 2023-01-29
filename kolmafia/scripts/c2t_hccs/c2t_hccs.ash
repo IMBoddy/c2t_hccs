@@ -692,10 +692,7 @@ boolean c2t_hccs_preCoil() {
 	}
 	*/
 
-	//sometimes runs out of mp for clip art
-	if (my_mp() < 11)
-		cli_execute('rest free');
-
+	
 	// first tome use // borrowed time
 	if (!get_property('_borrowedTimeUsed').to_boolean() && c2t_hccs_tomeClipArt($item[borrowed time]))
 		use(1,$item[borrowed time]);
@@ -1017,8 +1014,6 @@ boolean c2t_hccs_allTheBuffs() {
 	}
 
 	//third tome use //no longer using bee's knees for stat boost on non-moxie, but still need same strength buff?
-	if (my_mp() < 11)
-		cli_execute('rest free');
 	if (have_effect($effect[purity of spirit]) == 0 && c2t_hccs_tomeClipArt($item[cold-filtered water]))
 		use(1,$item[cold-filtered water]);
 
@@ -1192,18 +1187,13 @@ boolean c2t_hccs_preItem() {
 
 	//spice ghost
 	if (have_skill($skill[bind spice ghost])) {
-		if (my_class() == $class[pastamancer]) {
-			if (my_thrall() != $thrall[spice ghost]) {
-				if (my_mp() < 250)
-					cli_execute('eat magical sausage');
-				c2t_hccs_haveUse($skill[bind spice ghost]);
-			}
+		if (my_class() == $class[pastamancer]
+			&& my_thrall() != $thrall[spice ghost])
+		{
+			c2t_hccs_haveUse($skill[bind spice ghost]);
 		}
-		else {
-			if (my_mp() < 250)
-				cli_execute('eat magical sausage');
+		else
 			c2t_hccs_getEffect($effect[spice haze]);
-		}
 	}
 
 	//AT-only buff
@@ -1277,7 +1267,6 @@ boolean c2t_hccs_preHotRes() {
 			equip($slot[off-hand],$item[industrial fire extinguisher]);
 		use_familiar(c2t_priority($familiars[ghost of crimbo carols,exotic parrot]));
 
-		restore_mp(50);
 		adv1($location[the dire warren],-1,"");
 		run_turn();
 	}
@@ -1459,7 +1448,7 @@ boolean c2t_hccs_preFamiliar() {
 	// Pool buff
 	c2t_hccs_getEffect($effect[billiards belligerence]);
 
-	if (my_hp() < 30) use_skill(1,$skill[cannelloni cocoon]);
+	restore_hp(31);//need to have the hp before casting blood skills
 	c2t_hccs_getEffect($effect[blood bond]);
 	c2t_hccs_getEffect($effect[leash of linguini]);
 	c2t_hccs_getEffect($effect[empathy]);
@@ -1522,7 +1511,7 @@ boolean c2t_hccs_preFamiliar() {
 
 
 boolean c2t_hccs_preNoncombat() {
-	if (my_hp() < 30) use_skill(1,$skill[cannelloni cocoon]);
+	restore_hp(31);//need to have the hp before casting blood skills
 	c2t_hccs_getEffect($effect[blood bond]);
 	c2t_hccs_getEffect($effect[leash of linguini]);
 	c2t_hccs_getEffect($effect[empathy]);
@@ -1643,8 +1632,7 @@ boolean c2t_hccs_preWeapon() {
 	if (available_amount($item[powerful glove]) > 0 && have_effect($effect[triple-sized]) == 0 && !c2t_cast($skill[cheat code: triple size]))
 		abort('Triple size failed');
 
-	if (my_mp() < 500 && my_mp() != my_maxmp())
-		cli_execute('eat mag saus');
+	restore_mp(500);
 
 	// moved to hot res test
 	/*if (have_effect($effect[do you crush what i crush?]) == 0 && have_familiar($familiar[ghost of crimbo carols]) && (get_property('_snokebombUsed').to_int() < 3 || !get_property('_latteBanishUsed').to_boolean())) {
@@ -1796,8 +1784,7 @@ boolean c2t_hccs_preWeapon() {
 }
 
 boolean c2t_hccs_preSpell() {
-	if (my_mp() < 500 && my_mp() != my_maxmp())
-		cli_execute('eat mag saus');
+	restore_mp(500);
 	
 	//Steal umbrella because of current break
 	if (!have_familiar($familiar[left-hand man]) && available_amount($item[unbreakable umbrella]) > 0)
@@ -1901,8 +1888,7 @@ boolean c2t_hccs_preSpell() {
 		c2t_hccs_getEffect($effect[elemental saucesphere]);
 		c2t_hccs_getEffect($effect[astral shell]);
 		maximize("1000spooky res,hp,mp",false);
-		if (my_hp() < 800)
-			use_skill(1,$skill[cannelloni cocoon]);
+		restore_hp(800);
 		c2t_hccs_getEffect($effect[visions of the deep dark deeps]);
 	}
 
@@ -2085,9 +2071,7 @@ void c2t_hccs_fights() {
 
 		cli_execute('mood apathetic');
 
-		if (my_hp() < 0.5 * my_maxhp())
-			restore_mp(50);
-
+		
 		if (c2t_hccs_levelingFamiliar(true) == $familiar[melodramedary]
 			&& available_amount($item[dromedary drinking helmet]) > 0)
 
@@ -2174,11 +2158,8 @@ void c2t_hccs_fights() {
 
 	//spice ghost
 	if (my_class() == $class[pastamancer]
-		&& my_thrall() != $thrall[spice ghost]
-		&& have_skill($skill[bind spice ghost]))
+		&& my_thrall() != $thrall[spice ghost])
 	{
-		if (my_mp() < 250)
-			cli_execute('eat magical sausage');
 		c2t_hccs_haveUse($skill[bind spice ghost]);
 	}
 
@@ -2242,15 +2223,11 @@ void c2t_hccs_fights() {
 		&& !get_property('_eldritchHorrorEvoked').to_boolean())
 	{
 		maximize("mainstat,100exp,-equip garbage shirt,6000 bonus designer sweatpants"+fam,false);
-		restore_mp(80);
+		restore_mp(80);//need enough mp to cast summon and for combat
 		c2t_hccs_haveUse(1,$skill[evoke eldritch horror]);
 		run_combat();
 
-		//in case the tentacle boss shows up; will cause an instant loss in a wish fight if health left at 0
-		if (have_effect($effect[beaten up]) > 0
-			|| my_hp() < 50)
 
-			cli_execute('rest free');
 	}
 	
 	//Brickos
@@ -2391,8 +2368,6 @@ void c2t_hccs_fights() {
 		if (have_effect($effect[1701]) == 0//1701 is the desired version of $effet[hip to the jive]
 			&& my_meat() > 5000)
 		{
-			if (my_mp() < 150)
-				cli_execute('eat mag saus');
 			cli_execute('shrug stevedave');
 			c2t_hccs_getEffect($effect[ode to booze]);
 			cli_execute('drink hot socks');
@@ -2444,14 +2419,14 @@ void c2t_hccs_fights() {
 		}
 
 		// -- setup and combat itself --
-		//make sure have some mp
-		if (my_mp() < 50)
-			cli_execute('eat magical sausage');
 
 		//hopefully stop it before a possible break if my logic is off
-		if (c2t_hccs_backupCamera() && get_property('_pocketProfessorLectures').to_int() == 0 && c2t_hccs_backupCameraLeft() <= 1)
+		if (c2t_hccs_backupCamera()
+			&& get_property('_pocketProfessorLectures').to_int() == 0
+			&& c2t_hccs_backupCameraLeft() <= 1)
+		{
 			abort('Pocket professor has not been used yet, while backup camera charges left is '+c2t_hccs_backupCameraLeft());
-
+		}
 		//professor chain sausage goblins in NEP first thing if no backup camera
 		if (!c2t_hccs_backupCamera() && get_property('_pocketProfessorLectures').to_int() == 0) {
 			use_familiar($familiar[pocket professor]);
@@ -2530,10 +2505,7 @@ boolean c2t_hccs_wandererFight() {
 	if (turns_played() == 0)
 		c2t_hccs_getEffect($effect[feeling excited]);
 
-	if (my_hp() < my_maxhp()/2 || my_mp() < 10) {
-		c2t_hccs_breakfast();
-		restore_mp(50);
-	}
+	
 	print("Running wanderer fight","blue");
 	//saving last maximizer string and familiar stuff; outfits generally break here
 	string[int] maxstr = split_string(get_property("maximizerMRUList"),";");
