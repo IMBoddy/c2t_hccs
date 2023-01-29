@@ -16,6 +16,11 @@ string c2t_hccs_bowlSideways(string m);
 string c2t_hccs_bbChargeSkill(string m,skill ski);
 string c2t_hccs_bbChargeSkill(skill ski);
 
+//portscan logic
+string c2t_hccs_portscan();
+string c2t_hccs_portscan(string m);
+
+
 void main(int initround, monster foe, string page) {
 	//for holiday wanderer redos, since post-adv script can change my_location()
 	location loc = my_location();
@@ -35,14 +40,18 @@ void main(int initround, monster foe, string page) {
 	string mHead = "scrollwhendone;";
 	string mSteal = "pickpocket;";
 
-	//basic macro/what to run when nothing special needs be done or after the special thing is done
-	string mBasic =	c2t_bb($skill[disarming thrust])
+	//top of basic macro, where all the weakening stuff is
+	string mBasicTop =
+		c2t_bb($skill[curse of weaksauce])
+		.c2t_bb($skill[disarming thrust])
 		.c2t_bb($skill[detect weakness])
 		.c2t_bb($skill[micrometeorite])
-		.c2t_hccs_bowlSideways()
-		.c2t_bbIf("sealclubber || turtletamer || discobandit || accordionthief",
-			c2t_bb($skill[curse of weaksauce])
-			.c2t_bb($skill[sing along])
+		.c2t_hccs_bowlSideways();
+
+	//bottom of basic macro, where all the damaging stuff is
+	string mBasicBot =
+		c2t_bbIf("sealclubber || turtletamer || discobandit || accordionthief",
+			c2t_bb($skill[sing along])
 			.c2t_bbWhile("!pastround 20",c2t_bb("attack;"))
 		)
 		.c2t_bbIf("pastamancer",
@@ -50,20 +59,20 @@ void main(int initround, monster foe, string page) {
 			.c2t_bb($skill[sing along])
 		)
 		.c2t_bbIf("sauceror",
-			c2t_bb($skill[curse of weaksauce])
-			.c2t_bb($skill[stuffed mortar shell])
+			c2t_bb($skill[stuffed mortar shell])
 			.c2t_bb($skill[sing along])
 			.c2t_bb($skill[saucegeyser])
 		);
 
+	//basic macro/what to run when nothing special needs be done
+	string mBasic =	mBasicTop + mBasicBot;
+
+	
 	//mostly mBasic with relativity sprinkled in and small heal to help moxie survive chaining
-	string mChain =	c2t_bb($skill[disarming thrust])
-		.c2t_bb($skill[detect weakness])
-		.c2t_bb($skill[micrometeorite])
-		.c2t_hccs_bowlSideways()
+	string mChain =
+		mBasicTop
 		.c2t_bbIf("sealclubber || turtletamer || discobandit || accordionthief",
-			c2t_bb($skill[curse of weaksauce])
-			.c2t_bbIf("discobandit || accordionthief",c2t_bb($skill[saucy salve]))
+			c2t_bbIf("discobandit || accordionthief",c2t_bb($skill[saucy salve]))
 			.c2t_bb($skill[sing along])
 			.c2t_bb($skill[lecture on relativity])
 			.c2t_bbWhile("!pastround 20",c2t_bb("attack;"))
@@ -95,6 +104,7 @@ void main(int initround, monster foe, string page) {
 		else {//NEP
 			m += c2t_bb($skill[gulp latte]);
 			m += c2t_bb($skill[offer latte to opponent]);
+			m += c2t_hccs_portscan();
 			m += c2t_bb($skill[throw latte on opponent]);
 			m.c2t_bbSubmit();
 		}
@@ -152,22 +162,32 @@ void main(int initround, monster foe, string page) {
 				if (!have_familiar($familiar[god lobster])
 					&& get_property('lastCopyableMonster').to_monster() == $monster[novelty tropical skeleton])
 				{
-					mSteal
-					.c2t_bb($skill[feel nostalgic])
-					.c2t_bb($skill[feel envy])
-					.c2t_bb($skill[gulp latte])
-					.c2t_hccs_bbChargeSkill($skill[chest x-ray])
-					.c2t_hccs_bbChargeSkill($skill[shattering punch])
-					.c2t_bb($skill[gingerbread mob hit])
-					.c2t_bbSubmit();
+					m = mSteal;
+					m += c2t_bb($skill[feel nostalgic]);
+					m += c2t_bb($skill[feel envy]);
+					m += c2t_bb($skill[gulp latte]);
+					if (!have_familiar($familiar[ghost of crimbo carols]))
+						m += c2t_hccs_portscan();
+					m += c2t_hccs_bbChargeSkill($skill[chest x-ray]);
+					m += c2t_hccs_bbChargeSkill($skill[shattering punch]);
+					m += c2t_bb($skill[gingerbread mob hit]);
+					m.c2t_bbSubmit();
 					return;
 				}
+				m = mSteal;
+				m += c2t_bb($skill[gulp latte]);
+				if (!have_familiar($familiar[ghost of crimbo carols]))
+					m += c2t_hccs_portscan();
+				m += c2t_bb($skill[throw latte on opponent]);
+				m.c2t_bbSubmit();
+				return;
+
 			case $monster[novelty tropical skeleton]:
 				mSteal
-				.c2t_bb(get_property("_vampyreCloakeFormUses").to_int() == 0?c2t_bb($skill[become a wolf]):"")
+				.c2t_bb($skill[giant growth])
+				.c2t_bb($skill[become a wolf])
 				.c2t_bb($skill[gulp latte])
 				.c2t_bb($skill[bowl straight up])
-				.c2t_bb($skill[giant growth])
 				.c2t_bb($skill[throw latte on opponent])
 				.c2t_bbSubmit();
 				return;
@@ -179,6 +199,7 @@ void main(int initround, monster foe, string page) {
 				.c2t_bb($skill[meteor shower])
 				.c2t_bbSubmit();
 				return;
+				
 			case $monster[evil olive]:
 				//have to burn a free kill and nostalgia/envy if no god lobster
 				if (!have_familiar($familiar[god lobster])
@@ -266,6 +287,14 @@ void main(int initround, monster foe, string page) {
 				c2t_bbSubmit(mHead + mSteal + mBasic);
 				return;
 
+			//portscan
+			case $monster[government agent]:
+				m = mHead + mSteal + mBasicTop;
+				m += c2t_hccs_portscan();
+				m += mBasicBot;
+				m.c2t_bbSubmit();
+				return;
+	      
 			//chain potential; basic otherwise
 			case $monster[sausage goblin]:
 				c2t_bbSubmit(mHead + mChain);
@@ -273,7 +302,7 @@ void main(int initround, monster foe, string page) {
 
 			//nostalgia goes here
 			case $monster[god lobster]:
-				m = mHead;
+				m = mHead + mBasicTop;
 				//nostalgia/envy for drops
 				if (get_property("csServicesPerformed") == "Coil Wire"//so this doesn't try to fire in non-combat test
 					&& (get_property('lastCopyableMonster').to_monster() == $monster[novelty tropical skeleton]
@@ -287,16 +316,13 @@ void main(int initround, monster foe, string page) {
 					m += c2t_bb($skill[feel nostalgic]);
 					m += c2t_bb($skill[feel envy]);
 				}
-				m += mBasic;
+				m += mBasicBot;
 				m.c2t_bbSubmit();
 				return;
 
 			case $monster[eldritch tentacle]:
 				c2t_bbSubmit(
-					mHead + mSteal
-					.c2t_bb($skill[micrometeorite])
-					.c2t_bb($skill[detect weakness])
-					.c2t_bb($skill[curse of weaksauce])
+					mHead + mSteal + mBasicTop
 					.c2t_bb($skill[sing along])
 					.c2t_bbIf("sealclubber || turtletamer || discobandit || accordionthief",
 						c2t_bbWhile("!pastround 20","attack;")
@@ -438,5 +464,14 @@ string c2t_hccs_bbChargeSkill(skill ski) {
 	return get_property(prop).to_int() < max ? c2t_bb(ski) : "";
 }
 
+//portscan logic
+string c2t_hccs_portscan() return c2t_hccs_portscan("");
+string c2t_hccs_portscan(string m) {
+	if (!get_property("ownsSpeakeasy").to_boolean()
+		|| get_property("_speakeasyFreeFights").to_int() > 2)
 
+		return m;
+
+	return m + c2t_bb($skill[portscan]);
+}
 
