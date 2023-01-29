@@ -494,6 +494,10 @@ boolean c2t_hccs_preCoil() {
 	//vote
 	c2t_hccs_vote();
 	
+	//source terminal
+	c2t_hccs_sourceTerminalInit();
+
+	
 	//Bird-a-day Calendar
 	if (get_property('_canSeekBirds').to_boolean()) {
 		use(1, $item[Bird-a-Day calendar]);
@@ -1066,7 +1070,8 @@ boolean c2t_hccs_lovePotion(boolean useit,boolean dumpit) {
 				(love_effect.numeric_modifier('mysticality').to_int() <= -50
 				|| love_effect.numeric_modifier('muscle').to_int() <= -50
 				|| love_effect.numeric_modifier('moxie').to_int() <= 10
-				|| love_effect.numeric_modifier('maximum hp percent').to_int() <= -50))) {
+				|| love_effect.numeric_modifier('maximum hp percent').to_int() <= -50)))
+		{
 			if (dumpit) {
 				use(1,love_potion);
 				return true;
@@ -1090,7 +1095,8 @@ boolean c2t_hccs_lovePotion(boolean useit,boolean dumpit) {
 }
 
 boolean c2t_hccs_preItem() {
-	
+	string maxstr = 'item,2 booze drop,-equip broken champagne bottle,-equip surprisingly capacious handbag,-equip red-hot sausage fork,switch left-hand man';
+
 	
 	
 	//shrug off an AT buff
@@ -1168,7 +1174,7 @@ boolean c2t_hccs_preItem() {
 	//unbreakable umbrella
 	c2t_hccs_unbreakableUmbrella("item");
 
-	maximize('item,2 booze drop,-equip broken champagne bottle,-equip surprisingly capacious handbag,-equip red-hot sausage fork,switch left-hand man',false);
+	maximize(maxstr,false);f
 	if (c2t_hccs_thresholdMet(TEST_ITEM))
 		return true;
 
@@ -1190,14 +1196,19 @@ boolean c2t_hccs_preItem() {
 				   
 				   
 	//if familiar test is ever less than 19 turns, feel lost will need to be completely removed or the test order changed
-	c2t_hccs_getEffect($effect[feeling lost]);
-	if (c2t_hccs_thresholdMet(TEST_ITEM))
+	if (c2t_hccs_getEffect($effect[feeling lost])
+		&& c2t_hccs_thresholdMet(TEST_ITEM))
 		return true;
 
-	retrieve_item(1,$item[oversized sparkler]);
-	//repeat of previous maximize call
-	maximize('item,2 booze drop,-equip broken champagne bottle,-equip surprisingly capacious handbag,-equip red-hot sausage fork,switch left-hand man',false);
-	if (c2t_hccs_thresholdMet(TEST_ITEM))
+	if (retrieve_item(1,$item[oversized sparkler])) {
+		maximize(maxstr,false);
+		if (c2t_hccs_thresholdMet(TEST_ITEM))
+			return true;
+	}
+
+	if (c2t_hccs_haveSourceTerminal()
+		&& c2t_hccs_getEffect($effect[items.enh])
+		&& c2t_hccs_thresholdMet(TEST_ITEM))
 		return true;
 
 	//power plant; last to save batteries if not needed
@@ -2238,10 +2249,14 @@ void c2t_hccs_fights() {
 	if (get_property("ownsSpeakeasy").to_boolean()
 		&& get_property("_speakeasyFreeFights").to_int() < 3)
 	{
-		maximize("mainstat,100exp,-equip garbage shirt,-equip kramco,-equip i voted,6000 bonus designer sweatpants"+fam,false);
 		int start = my_turncount();
-		while (get_property("_speakeasyFreeFights").to_int() < 3 && start == my_turncount())
+		while (get_property("_speakeasyFreeFights").to_int() < 3 && start == my_turncount()) {
+			if (get_property("_sourceTerminalPortscanUses").to_int() > 0)
+				maximize("mainstat,exp,-equip garbage shirt,-equip kramco,-equip i voted,6 bonus designer sweatpants"+fam,false);
+			else
+				maximize("mainstat,100exp,-equip garbage shirt,-equip kramco,-equip i voted,6000 bonus designer sweatpants"+fam,false);
 			adv1($location[an unusually quiet barroom brawl]);
+		}
 		if (my_turncount() > start)
 			abort("a turn was used in the speakeasy; tracking may have broke");
 	}
