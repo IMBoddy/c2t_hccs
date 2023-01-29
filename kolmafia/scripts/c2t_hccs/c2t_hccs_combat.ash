@@ -44,8 +44,8 @@ void main(int initround, monster foe, string page) {
 	string mBasicTop =
 		c2t_bb($skill[curse of weaksauce])
 		.c2t_bb($skill[disarming thrust])
-		.c2t_bb($skill[detect weakness])
 		.c2t_bb($skill[micrometeorite])
+		.c2t_bb($skill[detect weakness])
 		.c2t_hccs_bowlSideways();
 
 	//bottom of basic macro, where all the damaging stuff is
@@ -299,6 +299,8 @@ void main(int initround, monster foe, string page) {
 		case $monster[terrible mutant]:
 		case $monster[angry ghost]:
 		case $monster[annoyed snake]:
+		case $monster[LOV Equivocator]:
+		case $monster[BRICKO oyster]:	
 		case $monster[slime blob]:
 			c2t_bbSubmit(mHead + mSteal + mBasic);
 			return;
