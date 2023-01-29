@@ -391,8 +391,8 @@ void c2t_hccs_init() {
 		"recoveryScript":"",
 		//recovery
 		"hpAutoRecoveryItems":"cannelloni cocoon;tongue of the walrus;disco nap",
-		"hpAutoRecovery":"0.6",
-		"hpAutoRecoveryTarget":"0.9",
+		"hpAutoRecovery":"0.9",
+		"hpAutoRecoveryTarget":"0.95",
 		"mpAutoRecoveryItems":"",
 		"manaBurningThreshold":"-0.05",
 		//combat
