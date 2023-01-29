@@ -34,9 +34,6 @@ void main(int initround, monster foe, string page) {
 		return;
 	}
 
-	
-
-
 	string mHead = "scrollwhendone;";
 	string mSteal = "pickpocket;";
 
@@ -67,7 +64,6 @@ void main(int initround, monster foe, string page) {
 	//basic macro/what to run when nothing special needs be done
 	string mBasic =	mBasicTop + mBasicBot;
 
-	
 	//mostly mBasic with relativity sprinkled in and small heal to help moxie survive chaining
 	string mChain =
 		mBasicTop
@@ -135,7 +131,6 @@ void main(int initround, monster foe, string page) {
 				m += c2t_bb($skill[fire extinguisher: foam yourself]);
 				m.c2t_bbSubmit();
 				return;
-
 			}
 			//fishing for latte ingredients with backups
 			else if (have_equipped($item[backup camera])
@@ -174,7 +169,6 @@ void main(int initround, monster foe, string page) {
 				m += c2t_bb($skill[gingerbread mob hit]);
 				m.c2t_bbSubmit();
 				return;
-
 			}
 			m = mSteal;
 			m += c2t_bb($skill[gulp latte]);
@@ -217,27 +211,28 @@ void main(int initround, monster foe, string page) {
 				.c2t_bb($skill[gingerbread mob hit])
 				.c2t_bbSubmit();
 				return;
-				
 			}
 		case $monster[hobelf]://apparently this doesn't work?
 		case $monster[elf hobo]://this might though?
+		case $monster[angry pi&ntilde;ata]:
+			mSteal
+			.c2t_bb($skill[use the force])//don't care about tracking a potential stolen item, so cut it straight away
+			.c2t_bbSubmit();
+			return;
+		
 		case $monster[Witchess Witch]://trying for broom	
-			c2t_bbSubmit(
-				mSteal
-				.c2t_bb($skill[meteor shower])
+				c2t_bbSubmit(
+					mSteal
+					.c2t_bb($skill[meteor shower])
 				);
 				return;
-		case $monster[angry pi&ntilde;ata]:
-				mSteal
-				.c2t_bb($skill[use the force])//don't care about tracking a potential stolen item, so cut it straight away
-				.c2t_bbSubmit();
-				return;
+		
 		//using all free kills on neverending party monsters
 		case $monster[party girl]:
 			//moxie without ghosts; still want to grab potion before leveling
 			if (my_primestat() == $stat[moxie]
 				&& get_property("lastCopyableMonster").to_monster() == $monster[possessed can of tomatoes])
-			{	
+			{
 				mSteal
 				.c2t_bb($skill[gulp latte])
 				.c2t_bb($skill[offer latte to opponent])
@@ -245,15 +240,7 @@ void main(int initround, monster foe, string page) {
 				.c2t_bb($skill[throw latte on opponent])
 				.c2t_bbSubmit();
 				return;
-				
-				//LOV	
-		//	case $monster[LOV Equivocator]:
-		//	case $monster[BRICKO oyster]:	
-
-				
-				
-				
-				}
+			}
 		case $monster[biker]:
 		case $monster[burnout]:
 		case $monster[jock]:
@@ -296,11 +283,11 @@ void main(int initround, monster foe, string page) {
 		case $monster[piranha plant]:
 		//voters
 		case $monster[government bureaucrat]:
+		case $monster[LOV Equivocator]:
+		case $monster[BRICKO oyster]:
 		case $monster[terrible mutant]:
 		case $monster[angry ghost]:
 		case $monster[annoyed snake]:
-		case $monster[LOV Equivocator]:
-		case $monster[BRICKO oyster]:	
 		case $monster[slime blob]:
 			c2t_bbSubmit(mHead + mSteal + mBasic);
 			return;
@@ -330,10 +317,12 @@ void main(int initround, monster foe, string page) {
 			m += mBasicBot;
 			m.c2t_bbSubmit();
 			return;
+
 		//chain potential; basic otherwise
 		case $monster[sausage goblin]:
 			c2t_bbSubmit(mHead + mChain);
 			return;
+
 		//nostalgia goes here
 		case $monster[god lobster]:
 			m = mHead + mBasicTop;
@@ -353,6 +342,27 @@ void main(int initround, monster foe, string page) {
 			m.c2t_bbSubmit();
 			return;
 
+		case $monster[LOV Engineer]:
+				c2t_bbSubmit(
+					mHead + mSteal
+					.c2t_bb($skill[weapon of the pastalord])
+					.c2t_bbIf("pastamancer || sauceror",
+						c2t_bb(4,$skill[weapon of the pastalord])
+					)
+				);
+				return;	
+			case $monster[LOV Enforcer]:
+				c2t_bbSubmit("attack;repeat;");
+				return;	
+				
+			case $monster[Mother Slime]:
+				c2t_bbSubmit(
+					mHead + mSteal
+					.c2t_bb($skill[snokebomb])
+					)
+				;
+				return;	
+				
 		case $monster[eldritch tentacle]:
 			c2t_bbSubmit(
 				mHead + mSteal + mBasicTop
@@ -397,26 +407,7 @@ void main(int initround, monster foe, string page) {
 			if (!get_property('mappingMonsters').to_boolean())
 				adv1(loc);
 			return;
-		case $monster[LOV Engineer]:
-			c2t_bbSubmit(
-				mHead + mSteal
-				.c2t_bb($skill[weapon of the pastalord])
-				.c2t_bbIf("pastamancer || sauceror",
-					c2t_bb(4,$skill[weapon of the pastalord])
-				)
-			);
-			return;	
-		case $monster[LOV Enforcer]:
-			c2t_bbSubmit("attack;repeat;");
-			return;	
-				
-		case $monster[Mother Slime]:
-			c2t_bbSubmit(
-				mHead + mSteal
-				.c2t_bb($skill[snokebomb])
-				)
-			;
-			return;		      
+
 		//this shouldn't happen
 		default:
 			abort("Currently in combat with something not accounted for in the combat script. Aborting.");
@@ -429,7 +420,6 @@ string c2t_hccs_bowlSideways(string m) {
 	int backup = get_property("_backUpUses").to_int();
 	int nep = 10-get_property("_neverendingPartyFreeTurns").to_int();
 	int free = c2t_hccs_freeKillsLeft();
-
 	if (out == m)
 		return m;
 	if (get_property("csServicesPerformed") != "Coil Wire")
@@ -503,7 +493,7 @@ string c2t_hccs_portscan() {
 
 		out = c2t_bb($skill[portscan]);
 
-	return m + c2t_bb($skill[portscan]);
+	return out;
 }
 string c2t_hccs_portscan(string m) {
 	return m + c2t_hccs_portscan();
