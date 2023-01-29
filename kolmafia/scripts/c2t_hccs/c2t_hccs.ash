@@ -1206,7 +1206,7 @@ boolean c2t_hccs_preItem() {
 	//unbreakable umbrella
 	c2t_hccs_unbreakableUmbrella("item");
 
-	maximize(maxstr,false);f
+	maximize(maxstr,false);
 	if (c2t_hccs_thresholdMet(TEST_ITEM))
 		return true;
 
