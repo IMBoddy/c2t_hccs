@@ -2190,7 +2190,7 @@ void c2t_hccs_fights() {
 	if (have_skill($skill[evoke eldritch horror])
 		&& !get_property('_eldritchHorrorEvoked').to_boolean())
 	{
-		maximize("mainstat,100exp,-equip garbage shirt,6 bonus designer sweatpants"+fam,false);
+		maximize("mainstat,100exp,-equip garbage shirt,6000 bonus designer sweatpants"+fam,false);
 		if (my_mp() < 80)
 			c2t_hccs_restoreMp();
 		c2t_hccs_haveUse(1,$skill[evoke eldritch horror]);
@@ -2233,12 +2233,26 @@ void c2t_hccs_fights() {
         	autosell(1, $item[BRICKO pearl]);
         	run_combat();			   
 		}
-	
+				   
+	//speakeasy / oliver's place
+	if (get_property("ownsSpeakeasy").to_boolean()
+		&& get_property("_speakeasyFreeFights").to_int() < 3)
+	{
+		maximize("mainstat,100exp,-equip garbage shirt,-equip kramco,-equip i voted,6000 bonus designer sweatpants"+fam,false);
+		int start = my_turncount();
+		while (get_property("_speakeasyFreeFights").to_int() < 3 && start == my_turncount())
+			adv1($location[an unusually quiet barroom brawl]);
+		if (my_turncount() > start)
+			abort("a turn was used in the speakeasy; tracking may have broke");
+	}
+
+				   
 	// Your Mushroom Garden
 	if ((get_campground() contains $item[packet of mushroom spores])
 		&& get_property('_mushroomGardenFights').to_int() == 0)
 	{
 		maximize("mainstat,-equip garbage shirt,6 bonus designer sweatpants"+fam,false);
+		maximize("mainstat,-equip garbage shirt,-equip kramco,-equip i voted,6 bonus designer sweatpants"+fam,false);
 		adv1($location[your mushroom garden],-1,"");
 	}
 
@@ -2294,7 +2308,7 @@ void c2t_hccs_fights() {
 		// -- using things as they become available --
 		//use runproof mascara ASAP if moxie for more stats
 		if (my_primestat() == $stat[moxie]
-			&& have_effect($effect[unrunnable face])== 0
+			&& have_effect($effect[unrunnable face]) == 0
 			&& item_amount($item[runproof mascara]) > 0)
 
 			use(1,$item[runproof mascara]);
