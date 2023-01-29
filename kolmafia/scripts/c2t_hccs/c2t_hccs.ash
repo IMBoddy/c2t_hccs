@@ -1014,8 +1014,8 @@ boolean c2t_hccs_allTheBuffs() {
 	}
 
 	//third tome use //no longer using bee's knees for stat boost on non-moxie, but still need same strength buff?
-	if (have_effect($effect[purity of spirit]) == 0 && c2t_hccs_tomeClipArt($item[cold-filtered water]))
-		use(1,$item[cold-filtered water]);
+	//if (have_effect($effect[purity of spirit]) == 0 && c2t_hccs_tomeClipArt($item[cold-filtered water]))
+	//	use(1,$item[cold-filtered water]);
 
 	//rhinestones to help moxie leveling
 	if (my_primestat() == $stat[moxie])
