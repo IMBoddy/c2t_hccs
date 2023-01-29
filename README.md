@@ -129,6 +129,7 @@ While these are not strictly required, not having enough that either save turns 
 * [designer sweatpants (new old stock)](https://kol.coldfront.net/thekolwiki/index.php/Designer_sweatpants_(new_old_stock)) &mdash; Charges pants and NPC store discount
 * [unopened tiny stillsuit](https://kol.coldfront.net/thekolwiki/index.php/Unopened_tiny_stillsuit) &mdash; if this is not equipped while adventuring, it will be placed on a familiar in the terrarium to passively build up
 * [packaged Jurassic Parka](https://kol.coldfront.net/thekolwiki/index.php/Packaged_Jurassic_Parka) &mdash; helps get NEP experience buff right away and gives 1 free kill
+* [deed to Oliver's Place](https://kol.coldfront.net/thekolwiki/index.php/Deed_to_Oliver%27s_Place) &mdash; 3 non-scaling free fights
 * [packaged model train set](https://kol.coldfront.net/thekolwiki/index.php/Packaged_model_train_set) &mdash; lots of extra stats from fights and can smooth out any meat problems
 
 ## Bugs?
