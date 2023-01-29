@@ -388,7 +388,7 @@ void c2t_hccs_init() {
 		"choiceAdventureScript":"c2t_hccs_choices.ash",
 		"betweenBattleScript":"c2t_hccs_preAdv.ash",
 		"afterAdventureScript":"c2t_hccs_postAdv.ash",
-		"recoveryScript":"",
+		"recoveryScript":"c2t_hccs_recovery.ash",
 		//recovery
 		"hpAutoRecoveryItems":"cannelloni cocoon;tongue of the walrus;disco nap",
 		"hpAutoRecovery":"0.9",
@@ -1235,8 +1235,7 @@ boolean c2t_hccs_preHotRes() {
 			equip($slot[off-hand],$item[industrial fire extinguisher]);
 		use_familiar(c2t_priority($familiars[ghost of crimbo carols,exotic parrot]));
 
-		if (my_mp() < 30)
-			c2t_hccs_restoreMp();
+		restore_mp(50);
 		adv1($location[the dire warren],-1,"");
 		run_turn();
 	}
@@ -2045,7 +2044,7 @@ void c2t_hccs_fights() {
 		cli_execute('mood apathetic');
 
 		if (my_hp() < 0.5 * my_maxhp())
-			c2t_hccs_restoreMp();
+			restore_mp(50);
 
 		if (c2t_hccs_levelingFamiliar(true) == $familiar[melodramedary]
 			&& available_amount($item[dromedary drinking helmet]) > 0)
@@ -2153,10 +2152,9 @@ void c2t_hccs_fights() {
 			c2t_hccs_haveUse(1,$skill[spirit boon]);
 	}
 				   
-	//run mood with auto mp recovery using free rests
-	set_property('mpAutoRecoveryItems','free rest');
+	
 	cli_execute('mood execute');
-	set_property('mpAutoRecoveryItems','');
+
 
 	//get crimbo ghost buff from dudes at NEP
 	if ((have_familiar($familiar[ghost of crimbo carols]) && have_effect($effect[holiday yoked]) == 0)
@@ -2202,8 +2200,7 @@ void c2t_hccs_fights() {
 		&& !get_property('_eldritchHorrorEvoked').to_boolean())
 	{
 		maximize("mainstat,100exp,-equip garbage shirt,6000 bonus designer sweatpants"+fam,false);
-		if (my_mp() < 80)
-			c2t_hccs_restoreMp();
+		restore_mp(80);
 		c2t_hccs_haveUse(1,$skill[evoke eldritch horror]);
 		run_combat();
 
@@ -2493,7 +2490,7 @@ boolean c2t_hccs_wandererFight() {
 
 	if (my_hp() < my_maxhp()/2 || my_mp() < 10) {
 		c2t_hccs_breakfast();
-		c2t_hccs_restoreMp();
+		restore_mp(50);
 	}
 	print("Running wanderer fight","blue");
 	//saving last maximizer string and familiar stuff; outfits generally break here
