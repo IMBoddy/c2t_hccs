@@ -9,7 +9,7 @@ This is a fork from c2t_hccs. Ive added a couple IotM I had that werent suported
 * [Machine Elf](https://kol.coldfront.net/thekolwiki/index.php/Machine_Elf)
 * [Tunnel of LOV](https://kol.coldfront.net/thekolwiki/index.php/The_Tunnel_of_L.O.V.E.)
 * [Asdon Martin](https://kol.coldfront.net/thekolwiki/index.php/Asdon_Martin)
-* [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_terminal)
+
 
 
 Kolmafia script to handle a hardcore community service run with my set of skills and IotMs and with any class.
@@ -84,7 +84,7 @@ While these are not strictly required, not having enough that either save turns 
 * [panicked kernel](https://kol.coldfront.net/thekolwiki/index.php/Panicked_kernel) &mdash; can potentially save a turn if lacking an astral pet sweater or better
 * [Mint Salton Pepper's Peppermint Seed Catalog](https://kol.coldfront.net/thekolwiki/index.php/Mint_Salton_Pepper%27s_Peppermint_Seed_Catalog) &mdash; used to get the synthesize item buff to save 10 turns on the item test; provides backup candies for other synthesis buffs
 * [Machine Elf](https://kol.coldfront.net/thekolwiki/index.php/Machine_Elf) &mdash; Doesn't use fights yet, gets inner elf from personal clan, youll need to change this to one of yours in properties, saves up to 2 turns on spell test.
-* [Source Terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_terminal) &mdash; saves up to 2 turns on item test.
+* [Source terminal](https://kol.coldfront.net/thekolwiki/index.php/Source_terminal) &mdash; saves 2 turns on item test; turns speakeasy fights into scaling fights
 * [Tunnel of LOV](https://kol.coldfront.net/thekolwiki/index.php/The_Tunnel_of_L.O.V.E.) &mdash; get's Elixir #3 + #6, Fam Weight Buff, LOV Earrings, LOV Chocolate, saves up to 2 turn on weapon test, 2 on spell test, 2 on Familiar test.
 * [Spacegate access badge](https://kol.coldfront.net/thekolwiki/index.php/Spacegate_access_badge) &mdash; provides stat buff for leveling.
 * [Suspicious Package](https://kol.coldfront.net/thekolwiki/index.php/Suspicious_package) &mdash; saves 5 on hot test, 3 on combat test, 1 on weapon test, 1 on spell test; backup banishes
