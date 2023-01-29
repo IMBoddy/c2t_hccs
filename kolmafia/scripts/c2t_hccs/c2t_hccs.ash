@@ -2028,14 +2028,17 @@ void c2t_hccs_fights() {
 	// saber yellow ray stuff
 	if (available_amount($item[tomato juice of powerful power]) == 0
 		&& available_amount($item[tomato]) == 0
-		&& have_effect($effect[tomato power]) == 0) {
+		&& have_effect($effect[tomato power]) == 0)
+	{
 
 		cli_execute('mood apathetic');
 
 		if (my_hp() < 0.5 * my_maxhp())
 			c2t_hccs_restoreMp();
 
-		if (c2t_hccs_levelingFamiliar(true) == $familiar[melodramedary] && available_amount($item[dromedary drinking helmet]) > 0)
+		if (c2t_hccs_levelingFamiliar(true) == $familiar[melodramedary]
+			&& available_amount($item[dromedary drinking helmet]) > 0)
+
 			fam = ",equip dromedary drinking helmet";
 		
 		// Fruits in skeleton store (Saber YR)
@@ -2049,8 +2052,11 @@ void c2t_hccs_fights() {
 			}
 			if (!can_adventure($location[the skeleton store]))
 				abort('Cannot open skeleton store!');
-			if ($location[the skeleton store].turns_spent == 0 && !$location[the skeleton store].noncombat_queue.contains_text('Skeletons In Store'))
+			if ($location[the skeleton store].turns_spent == 0
+				&& !$location[the skeleton store].noncombat_queue.contains_text('Skeletons In Store'))
+
 				adv1($location[the skeleton store],-1,'');
+			
 			if (!$location[the skeleton store].noncombat_queue.contains_text('Skeletons In Store'))
 				abort('Something went wrong at skeleton store.');
 
@@ -2091,7 +2097,9 @@ void c2t_hccs_fights() {
 	c2t_hccs_getEffect($effect[stevedave's shanty of superiority]);
 	
 	//sort out familiar
-	if (c2t_hccs_levelingFamiliar(false) == $familiar[melodramedary] && available_amount($item[dromedary drinking helmet]) > 0)
+	if (c2t_hccs_levelingFamiliar(false) == $familiar[melodramedary]
+		&& available_amount($item[dromedary drinking helmet]) > 0)
+
 		fam = ",equip dromedary drinking helmet";
 
 	//mumming trunk stats on leveling familiar
@@ -2113,18 +2121,23 @@ void c2t_hccs_fights() {
 		cli_execute('mood hccs-mox');
 
 	//spice ghost
-	if (my_class() == $class[pastamancer] && have_skill($skill[bind spice ghost])) {
-		if (my_thrall() != $thrall[spice ghost]) {
-			if (my_mp() < 250)
-				cli_execute('eat magical sausage');
-			c2t_hccs_haveUse($skill[bind spice ghost]);
-		}
+	if (my_class() == $class[pastamancer]
+		&& my_thrall() != $thrall[spice ghost]
+		&& have_skill($skill[bind spice ghost]))
+	{
+		if (my_mp() < 250)
+			cli_execute('eat magical sausage');
+		c2t_hccs_haveUse($skill[bind spice ghost]);
 	}
 
 	//turtle tamer blessing
 	if (my_class() == $class[turtle tamer]) {
-		if (have_effect($effect[blessing of the war snapper]) == 0 && have_effect($effect[grand blessing of the war snapper]) == 0 && have_effect($effect[glorious blessing of the war snapper]) == 0)
+		if (have_effect($effect[blessing of the war snapper]) == 0
+			&& have_effect($effect[grand blessing of the war snapper]) == 0
+			&& have_effect($effect[glorious blessing of the war snapper]) == 0)
+
 			c2t_hccs_haveUse($skill[blessing of the war snapper]);
+		
 		if (have_effect($effect[boon of the war snapper]) == 0)
 			c2t_hccs_haveUse(1,$skill[spirit boon]);
 	}
@@ -2156,20 +2169,27 @@ void c2t_hccs_fights() {
 	while (c2t_hccs_fightGodLobster());
 
 	//moxie needs olives
-	if (my_primestat() == $stat[moxie] && have_effect($effect[slippery oiliness]) == 0 && item_amount($item[jumbo olive]) == 0) {
+	if (my_primestat() == $stat[moxie]
+		&& have_effect($effect[slippery oiliness]) == 0
+		&& item_amount($item[jumbo olive]) == 0)
+	{
 		//only thing that needs be equipped
 		c2t_hccs_levelingFamiliar(true);
 		if (!have_equipped($item[fourth of may cosplay saber]))
 			equip($item[fourth of may cosplay saber]);
 		//TODO evil olive - change to run away from and feel nostagic+envy+free kill another thing to save a saber use for spell test
-		if (!c2t_hccs_combatLoversLocket($monster[evil olive]) && !c2t_hccs_genie($monster[evil olive]))
+		if (!c2t_hccs_combatLoversLocket($monster[evil olive])
+			&& !c2t_hccs_genie($monster[evil olive]))
+
 			abort("Failed to fight evil olive");
 	}
 
 	c2t_hccs_levelingFamiliar(false);
 
 	//summon tentacle
-	if (have_skill($skill[evoke eldritch horror]) && !get_property('_eldritchHorrorEvoked').to_boolean()) {
+	if (have_skill($skill[evoke eldritch horror])
+		&& !get_property('_eldritchHorrorEvoked').to_boolean())
+	{
 		maximize("mainstat,100exp,-equip garbage shirt,6 bonus designer sweatpants"+fam,false);
 		if (my_mp() < 80)
 			c2t_hccs_restoreMp();
@@ -2177,7 +2197,9 @@ void c2t_hccs_fights() {
 		run_combat();
 
 		//in case the tentacle boss shows up; will cause an instant loss in a wish fight if health left at 0
-		if (have_effect($effect[beaten up]) > 0 || my_hp() < 50)
+		if (have_effect($effect[beaten up]) > 0
+			|| my_hp() < 50)
+
 			cli_execute('rest free');
 	}
 	
@@ -2213,7 +2235,9 @@ void c2t_hccs_fights() {
 		}
 	
 	// Your Mushroom Garden
-	if ((get_campground() contains $item[packet of mushroom spores]) && get_property('_mushroomGardenFights').to_int() == 0) {
+	if ((get_campground() contains $item[packet of mushroom spores])
+		&& get_property('_mushroomGardenFights').to_int() == 0)
+	{
 		maximize("mainstat,-equip garbage shirt,6 bonus designer sweatpants"+fam,false);
 		adv1($location[your mushroom garden],-1,"");
 	}
@@ -2223,7 +2247,9 @@ void c2t_hccs_fights() {
 	//setup for NEP and backup fights
 	string doc,garbage,kramco;
 
-	if (c2t_hccs_backupCamera() && get_property('backupCameraMode') != 'ml')
+	if (c2t_hccs_backupCamera()
+		&& get_property('backupCameraMode') != 'ml')
+
 		cli_execute('backupcamera ml');
 
 	if (!get_property('_gingerbreadMobHitUsed').to_boolean())
@@ -2233,7 +2259,9 @@ void c2t_hccs_fights() {
 
 	int start = my_turncount();			   
 	//NEP loop //neverending party and backup camera fights
-	while (get_property("_neverendingPartyFreeTurns").to_int() < 10 || c2t_hccs_freeKillsLeft() > 0) {
+	while (get_property("_neverendingPartyFreeTurns").to_int() < 10
+		|| c2t_hccs_freeKillsLeft() > 0)
+	{
 		if (my_turncount() > start) {
 			print("a turn was used in the neverending party loop","red");
 			print("aborting in case mafia tracking broke somewhere or some unforseen thing happened","red");
@@ -2247,7 +2275,9 @@ void c2t_hccs_fights() {
 		if (available_amount($item[lil' doctor&trade; bag]) > 0
 			&& get_property('_neverendingPartyFreeTurns').to_int() == 10
 			&& get_property('_chestXRayUsed').to_int() < 3)
-				doc = ",equip lil doctor bag";
+							
+			doc = ",equip lil doctor bag";
+
 		else
 			doc = "";
 
@@ -2263,11 +2293,17 @@ void c2t_hccs_fights() {
 
 		// -- using things as they become available --
 		//use runproof mascara ASAP if moxie for more stats
-		if (my_primestat() == $stat[moxie] && have_effect($effect[unrunnable face]) == 0 && item_amount($item[runproof mascara]) > 0)
+		if (my_primestat() == $stat[moxie]
+			&& have_effect($effect[unrunnable face])== 0
+			&& item_amount($item[runproof mascara]) > 0)
+
 			use(1,$item[runproof mascara]);
 
 		//turtle tamer turtle
-		if (my_class() == $class[turtle tamer] && have_effect($effect[gummi-grin]) == 0 && item_amount($item[gummi turtle]) > 0)
+		if (my_class() == $class[turtle tamer]
+			&& have_effect($effect[gummi-grin]) == 0
+			&& item_amount($item[gummi turtle]) > 0)
+
 			use(1,$item[gummi turtle]);
 
 		//eat CER pizza ASAP
@@ -2280,7 +2316,9 @@ void c2t_hccs_fights() {
 			c2t_hccs_pizzaCube($effect[certainty]);
 
 		//drink hot socks ASAP
-		if (have_effect($effect[1701]) == 0 && my_meat() > 5000) {//1701 is the desired version of $effet[hip to the jive]
+		if (have_effect($effect[1701]) == 0//1701 is the desired version of $effet[hip to the jive]
+			&& my_meat() > 5000)
+		{
 			if (my_mp() < 150)
 				cli_execute('eat mag saus');
 			cli_execute('shrug stevedave');
@@ -2291,7 +2329,9 @@ void c2t_hccs_fights() {
 		}
 
 		//drink astral pilsners once level 11; saving 1 for use in mime army shotglass post-run
-		if (my_level() >= 11 && item_amount($item[astral pilsner]) == 6) {
+		if (my_level() >= 11
+			&& item_amount($item[astral pilsner]) == 6)
+		{
 			cli_execute('shrug Shanty of Superiority');
 			c2t_hccs_haveUse(1,$skill[the ode to booze]);
 			drink(5,$item[astral pilsner]);
@@ -2299,13 +2339,17 @@ void c2t_hccs_fights() {
 			c2t_hccs_haveUse(1,$skill[stevedave's shanty of superiority]);
 		}
 
-		//explicitly buying and using range as it rarely bugs out
-		if (!(get_campground() contains $item[dramatic&trade; range]) && my_meat() >= (have_skill($skill[five finger discount])?950:1000)) { //five-finger discount
+		//explicitly buying and using range as it rarely bugs out otherwise
+		if (!(get_campground() contains $item[dramatic&trade; range])
+			&& my_meat() >= (have_skill($skill[five finger discount])?950:1000))//five-finger discount
+		{
 			retrieve_item($item[dramatic&trade; range]);
 			use($item[dramatic&trade; range]);
 		}
 		//potion buffs when enough meat obtained
-		if (have_effect($effect[tomato power]) == 0 && (get_campground() contains $item[dramatic&trade; range])) {
+		if (have_effect($effect[tomato power]) == 0
+			&& (get_campground() contains $item[dramatic&trade; range]))
+		{
 			if (my_primestat() == $stat[muscle]) {
 				c2t_hccs_getEffect($effect[phorcefullness]);
 				c2t_hccs_getEffect($effect[stabilizing oiliness]);
